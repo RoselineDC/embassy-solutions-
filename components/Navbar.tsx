@@ -70,13 +70,13 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 ${activeSection === link.href.replace("#", "") ? "text-[#c9a84c]" : "text-white/80 hover:text-white"}`}
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 ${activeSection === link.href.replace("#", "") ? "text-[#e5ebed]" : "text-white/80 hover:text-blue"}`}
                   whileHover={{ y: -1 }}
                 >
                   {link.label}
                   {activeSection === link.href.replace("#", "") && (
                     <motion.div
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-[#c9a84c] rounded-full"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-gold rounded-full"
                       layoutId="activeNav"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
@@ -86,16 +86,17 @@ export default function Navbar() {
             </div>
 
             <div className="hidden lg:flex items-center gap-3">
-              <motion.a href="tel:+27671507317" className="flex items-center gap-2 text-white/70 hover:text-[#c9a84c] text-sm transition-colors" whileHover={{ scale: 1.02 }}>
+              <motion.a href="tel:+27671507317" className="flex items-center gap-2 text-white hover:text-[#e4ec09] text-sm transition-colors" whileHover={{ scale: 1.02 }}>
                 <Phone className="w-4 h-4" />
                 <span>+27 67 150 7317</span>
               </motion.a>
               <motion.a
                 href="#contact"
                 onClick={(e) => { e.preventDefault(); scrollTo("#contact"); }}
-                className="px-5 py-2.5 bg-linear-to-r from-[#c9a84c] to-[#e2c772] text-[#0a1628] font-semibold text-sm rounded-lg hover:shadow-lg hover:shadow-[#c9a84c]/25 transition-all duration-300"
-                whileHover={{ scale: 1.03, y: -1 }}
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#0B3D91] to-[#38BDF8] text-white font-bold text-sm rounded-lg hover:shadow-xl hover:shadow-[#38BDF8]/30 transition-all duration-300"
+                whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
+
               >
                 Get a Quote
               </motion.a>

@@ -59,18 +59,18 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32 bg-[#0a1628]">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c9a84c]/50 to-transparent" />
-      <div className="absolute top-40 left-0 w-80 h-80 bg-[#c9a84c]/3 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-0 w-96 h-96 bg-[#c9a84c]/2 rounded-full blur-3xl" />
+    <section id="contact" className="relative py-24 sm:py-32 bg-navy">
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-gold/50 to-transparent" />
+      <div className="absolute top-40 left-0 w-80 h-80 bg-gold/3 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-0 w-96 h-96 bg-gold/2 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <AnimatedSection className="text-center mb-16">
-          <span className="text-[#c9a84c] font-semibold text-sm tracking-widest uppercase">Get In Touch</span>
+          <span className="text-gold font-semibold text-sm tracking-widest uppercase">Get In Touch</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-3 mb-5">
             Contact{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c9a84c] to-[#e2c772]">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-gold to-gold-light">
               Us
             </span>
           </h2>
@@ -84,11 +84,11 @@ export default function ContactSection() {
           {contactInfo.map((info, i) => (
             <AnimatedSection key={info.title} delay={i * 0.1}>
               <motion.div
-                className="bg-[#132038] rounded-xl p-5 border border-white/5 hover:border-[#c9a84c]/30 transition-all duration-300 group h-full"
+                className="bg-navy-light rounded-xl p-5 border border-white/5 hover:border-gold/30 transition-all duration-300 group h-full"
                 whileHover={{ y: -3 }}
               >
-                <div className="w-11 h-11 rounded-lg bg-[#c9a84c]/10 group-hover:bg-[#c9a84c]/20 flex items-center justify-center mb-3 transition-colors">
-                  <info.icon className="w-5 h-5 text-[#c9a84c]" />
+                <div className="w-11 h-11 rounded-lg bg-gold/10 group-hover:bg-gold/20 flex items-center justify-center mb-3 transition-colors">
+                  <info.icon className="w-5 h-5 text-gold" />
                 </div>
                 <h4 className="text-white font-semibold text-sm mb-2">{info.title}</h4>
                 {info.details.map((d, j) => (
@@ -97,7 +97,7 @@ export default function ContactSection() {
                 {info.action && (
                   <a
                     href={info.href}
-                    className="inline-flex items-center gap-1 text-[#c9a84c] text-xs font-medium mt-3 hover:underline"
+                    className="inline-flex items-center gap-1 text-gold text-xs font-medium mt-3 hover:underline"
                   >
                     {info.action}
                   </a>
@@ -111,7 +111,7 @@ export default function ContactSection() {
         <div className="grid lg:grid-cols-5 gap-8">
           {/* Form */}
           <AnimatedSection direction="left" className="lg:col-span-3">
-            <div className="bg-[#132038] rounded-2xl p-6 sm:p-8 border border-white/5">
+            <div className="bg-navy-light rounded-2xl p-6 sm:p-8 border border-white/5">
               <h3 className="text-xl font-bold text-white mb-6">Send Us a Message</h3>
 
               {submitted ? (
@@ -137,7 +137,7 @@ export default function ContactSection() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-[#c9a84c]/50 focus:ring-1 focus:ring-[#c9a84c]/25 transition-all"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/25 transition-all"
                         placeholder="John Doe"
                       />
                     </div>
@@ -149,7 +149,7 @@ export default function ContactSection() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-[#c9a84c]/50 focus:ring-1 focus:ring-[#c9a84c]/25 transition-all"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-[#c9a84c]/25 transition-all"
                         placeholder="john@embassy.gov"
                       />
                     </div>
@@ -162,7 +162,7 @@ export default function ContactSection() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-[#c9a84c]/50 focus:ring-1 focus:ring-[#c9a84c]/25 transition-all"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/25 transition-all"
                         placeholder="+27 XX XXX XXXX"
                       />
                     </div>
@@ -172,20 +172,20 @@ export default function ContactSection() {
                         name="service"
                         value={formData.service}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:border-[#c9a84c]/50 focus:ring-1 focus:ring-[#c9a84c]/25 transition-all appearance-none"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/25 transition-all appearance-none"
                       >
-                        <option value="" className="bg-[#132038]">Select a service</option>
-                        <option value="construction" className="bg-[#132038]">Construction & Renovation</option>
-                        <option value="maintenance" className="bg-[#132038]">Maintenance & Handyman</option>
-                        <option value="chauffeur" className="bg-[#132038]">Chauffeur & Car Hiring</option>
-                        <option value="landscaping" className="bg-[#132038]">Landscaping</option>
-                        <option value="cleaning" className="bg-[#132038]">Cleaning</option>
-                        <option value="it" className="bg-[#132038]">IT Services</option>
-                        <option value="electrical" className="bg-[#132038]">Electrical Services</option>
-                        <option value="security" className="bg-[#132038]">Security Services</option>
-                        <option value="pool" className="bg-[#132038]">Swimming Pool</option>
-                        <option value="events" className="bg-[#132038]">Event Management</option>
-                        <option value="other" className="bg-[#132038]">Other</option>
+                        <option value="" className="bg-navy-light">Select a service</option>
+                        <option value="construction" className="bg-navy-light">Construction & Renovation</option>
+                        <option value="maintenance" className="bg-navy-light">Maintenance & Handyman</option>
+                        <option value="chauffeur" className="bg-navy-light">Chauffeur & Car Hiring</option>
+                        <option value="landscaping" className="bg-navy-light">Landscaping</option>
+                        <option value="cleaning" className="bg-navy-light">Cleaning</option>
+                        <option value="it" className="bg-navy-light">IT Services</option>
+                        <option value="electrical" className="bg-navy-light">Electrical Services</option>
+                        <option value="security" className="bg-navy-light">Security Services</option>
+                        <option value="pool" className="bg-navy-light">Swimming Pool</option>
+                        <option value="events" className="bg-navy-light">Event Management</option>
+                        <option value="other" className="bg-navy-light">Other</option>
                       </select>
                     </div>
                   </div>
@@ -197,20 +197,20 @@ export default function ContactSection() {
                       onChange={handleChange}
                       required
                       rows={4}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-[#c9a84c]/50 focus:ring-1 focus:ring-[#c9a84c]/25 transition-all resize-none"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/25 transition-all resize-none"
                       placeholder="Tell us about your requirements..."
                     />
                   </div>
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 bg-gradient-to-r from-[#c9a84c] to-[#e2c772] text-[#0a1628] font-bold rounded-lg hover:shadow-lg hover:shadow-[#c9a84c]/20 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="w-full py-3.5 bg-linear-to-r from-gold to-gold-light text-navy font-bold rounded-lg hover:shadow-lg hover:shadow-gold/20 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2"
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.99 }}
                   >
                     {isSubmitting ? (
                       <motion.div
-                        className="w-5 h-5 border-2 border-[#0a1628]/30 border-t-[#0a1628] rounded-full"
+                        className="w-5 h-5 border-2 border-navy/30 border-t-navy rounded-full"
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                       />
@@ -229,10 +229,10 @@ export default function ContactSection() {
           {/* Side Info */}
           <AnimatedSection direction="right" className="lg:col-span-2 flex flex-col gap-6">
             {/* Map */}
-            <div className="bg-[#132038] rounded-2xl overflow-hidden border border-white/5 flex-1 min-h-[220px]">
+            <div className="bg-navy-light rounded-2xl overflow-hidden border border-white/5 flex-1 min-h-55">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57243.28633848732!2d28.1544076!3d-25.7479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9561b2e4f5c7a7%3A0x3f5a0f1d6c7a9b4!2sPretoria%2C%20South%20Africa!5e0!3m2!1sen!2sus!4v1700000000000"
-                className="w-full h-full min-h-[220px] border-0 grayscale contrast-110 opacity-70"
+                className="w-full h-full min-h-55 border-0 grayscale contrast-110 opacity-70"
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -240,7 +240,7 @@ export default function ContactSection() {
             </div>
 
             {/* Quick Links */}
-            <div className="bg-[#132038] rounded-2xl p-6 border border-white/5">
+            <div className="bg-navy-light rounded-2xl p-6 border border-white/5">
               <h4 className="text-white font-semibold text-sm mb-4">Quick Connect</h4>
               <div className="space-y-3">
                 <motion.a
@@ -260,10 +260,10 @@ export default function ContactSection() {
                   href="https://www.embassysolutions.co.za"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-xl bg-[#c9a84c]/10 hover:bg-[#c9a84c]/20 border border-[#c9a84c]/20 transition-all group"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-gold/10 hover:bg-gold/20 border border-gold/20 transition-all group"
                   whileHover={{ x: 4 }}
                 >
-                  <Globe className="w-5 h-5 text-[#c9a84c]" />
+                  <Globe className="w-5 h-5 text-gold" />
                   <div>
                     <p className="text-white text-sm font-medium">Website</p>
                     <p className="text-white/40 text-xs">www.embassysolutions.co.za</p>
