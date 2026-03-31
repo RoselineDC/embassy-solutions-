@@ -4,6 +4,7 @@ import * as React from "react";
 import { AnimatedSection, CountUp } from "../AnimatedSection";
 import { motion } from "framer-motion";
 import { ArrowRight, Shield, Clock, Award } from "lucide-react";
+import Image from "next/image";
 
 const stats = [
   { icon: Shield, value: 150, suffix: "+", label: "Diplomatic Missions Served" },
@@ -39,20 +40,21 @@ export default function HeroSection() {
     >
       {/* Background */}
       <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80"
+        <Image
+          src="/unionbuilding.png"
           alt="Modern embassy building"
-          className="w-full h-full object-cover"
+          fill
           style={{
+            objectFit: "cover",
             transform: `translate(${mouse.x * 0.6}px, ${mouse.y * 0.6}px) scale(1.05)`,
           }}
         />
 
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-[#020617]/80" />
+        <div className="absolute inset-0 bg-[#020617]/10" />
 
         {/* Gradient depth */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B3D91]/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-[#0B3D91]/40 via-transparent to-transparent" />
 
         {/* Ambient glow */}
         <div className="absolute inset-0 pointer-events-none">
@@ -62,7 +64,7 @@ export default function HeroSection() {
       </div>
 
       {/* Falling Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(25)].map((_, i) => (
           <motion.div
             key={i}
@@ -85,7 +87,7 @@ export default function HeroSection() {
             }}
           />
         ))}
-      </div>
+      </div> */}
 
       {/* Content */}
       <div
@@ -123,7 +125,7 @@ export default function HeroSection() {
                   background: `conic-gradient(#0B3D91, #38BDF8, #ffffff, #FACC15, #0B3D91)`,
                 }}
               />
-            
+
             </motion.div>
           </AnimatedSection>
 
@@ -131,10 +133,10 @@ export default function HeroSection() {
           <AnimatedSection delay={0.4}>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6">
               Elevating{" "}
-              <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#38BDF8] via-white to-[#FACC15]">
+              <span className="relative inline-block text-transparent bg-clip-text bg-linear-to-r from-[#38BDF8] via-[#008591] to-[#38BDF8]">
                 Diplomatic
                 <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
+                  className="absolute inset-0 bg-linear-to-r from-transparent via-white/60 to-transparent"
                   style={{ mixBlendMode: "overlay" }}
                   animate={{ x: ["-120%", "120%"] }}
                   transition={{
@@ -154,7 +156,7 @@ export default function HeroSection() {
           <AnimatedSection delay={0.6}>
             <p className="text-lg sm:text-xl text-[#E2E8F0] max-w-xl mb-8 leading-relaxed">
               Your trusted single point of contact for embassy and consulate services.
-              Construction, IT, maintenance, security, and more — delivered with precision.
+              Construction, IT, maintenance, security, and more delivered with precision.
             </p>
           </AnimatedSection>
 
@@ -167,7 +169,7 @@ export default function HeroSection() {
                   e.preventDefault();
                   document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#0B3D91] to-[#38BDF8] text-white font-bold text-sm rounded-lg hover:shadow-xl hover:shadow-[#38BDF8]/30 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#1097d1] text-white font-bold text-sm rounded-lg hover:shadow-xl hover:shadow-[#38BDF8]/30 transition-all duration-300"
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -181,7 +183,7 @@ export default function HeroSection() {
                   e.preventDefault();
                   document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/20 text-white font-semibold text-sm rounded-lg hover:bg-[#FACC15]/10 hover:border-[#FACC15]/40 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/20 text-white font-semibold text-sm rounded-lg hover:bg-[#FACC15]/10 hover:border-orange-600 transition-all duration-300"
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -197,7 +199,7 @@ export default function HeroSection() {
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
-                className="text-center p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-[#38BDF8]/40 transition-all"
+                className="text-center p-4 rounded-xl bg-white/15 backdrop-blur-md border border-white/10 hover:border-orange-600 transition-all"
                 whileHover={{ y: -4 }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -207,7 +209,7 @@ export default function HeroSection() {
                 <p className="text-2xl sm:text-3xl font-bold text-white">
                   <CountUp target={stat.value} suffix={stat.suffix} />
                 </p>
-                <p className="text-white/60 text-xs sm:text-sm mt-1">{stat.label}</p>
+                <p className="text-gray-400 text-xs sm:text-sm mt-1">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -220,8 +222,8 @@ export default function HeroSection() {
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <span className="text-white/40 text-xs tracking-widest uppercase">Scroll</span>
-        <div className="w-5 h-8 border border-white/20 rounded-full flex justify-center pt-1.5">
+        <span className="text-white text-xs tracking-widest uppercase">Scroll</span>
+        <div className="w-5 h-8 border border-orange-600 rounded-full flex justify-center pt-1.5">
           <motion.div
             className="w-1 h-2 bg-[#38BDF8] rounded-full"
             animate={{ y: [0, 8, 0], opacity: [1, 0.3, 1] }}
