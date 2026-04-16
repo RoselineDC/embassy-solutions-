@@ -1,8 +1,8 @@
 "use client";
 
-import { AnimatedSection } from "@/components/AnimatedSection";
 import { Phone, Mail, MapPin, ArrowUp } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -14,20 +14,30 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#060e1a] border-t border-white/5">
+    <footer className="bg-[#060e1a] gradient-border">
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-linear-to-br from-[#c9a84c] to-[#e2c772] flex items-center justify-center">
-                <span className="text-[#0a1628] font-black text-sm tracking-tight">ES</span>
+            <div className="flex items-center gap-3 mb-4">            
+
+              <div className="w-10 h-10 rounded-lg  flex items-center justify-center">
+                <span className="text-[#04142c] font-black text-sm tracking-tight">
+                  <Image
+                    src="/white-logo.png"
+                    alt="logo"
+                    width={60}
+                    height={16}
+                    className="object-contain"
+
+                  />
+                </span>
               </div>
-              <div>
-                <p className="text-white font-bold text-sm leading-tight tracking-wide">EMBASSY</p>
-                <p className="text-[#c9a84c] text-[10px] font-semibold tracking-[0.25em] uppercase">Solutions</p>
+              <div className="hidden sm:block">
+                <p className="text-white font-bold text-lg leading-tight tracking-wide uppercase font-sans">Embassy Solutions</p>
               </div>
+
             </div>
             <p className="text-white/40 text-sm leading-relaxed mb-4">
               Your trusted single point of contact for comprehensive embassy and consulate services. Quality, reliability, and excellence in every detail.
@@ -37,10 +47,10 @@ export default function Footer() {
                 <motion.a
                   key={social}
                   href="#"
-                  className="w-9 h-9 rounded-lg bg-white/5 hover:bg-[#c9a84c]/20 flex items-center justify-center transition-colors border border-white/5"
+                  className="w-9 h-9 rounded-lg bg-white/5 hover:bg-gold/20 flex items-center justify-center transition-colors border border-white/5"
                   whileHover={{ y: -2, scale: 1.05 }}
                 >
-                  <span className="text-white/40 hover:text-[#c9a84c] text-xs uppercase font-bold">{social[0]}</span>
+                  <span className="text-white/40 hover:text-orange-500 text-xs uppercase font-bold">{social[0]}</span>
                 </motion.a>
               ))}
             </div>
@@ -61,7 +71,7 @@ export default function Footer() {
                   <a
                     href={link.href}
                     onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                    className="text-white/40 hover:text-[#c9a84c] text-sm transition-colors duration-200 animated-underline"
+                    className="text-white/40 hover:text-orange-500 text-sm transition-colors duration-200 animated-underline"
                   >
                     {link.label}
                   </a>
@@ -86,7 +96,7 @@ export default function Footer() {
                   <a
                     href="#services"
                     onClick={(e) => { e.preventDefault(); scrollTo("#services"); }}
-                    className="text-white/40 hover:text-[#c9a84c] text-sm transition-colors duration-200 animated-underline"
+                    className="text-white/40 hover:text-orange-500 text-sm transition-colors duration-200 animated-underline"
                   >
                     {service}
                   </a>
@@ -100,18 +110,18 @@ export default function Footer() {
             <h4 className="text-white font-semibold text-sm mb-4">Contact Info</h4>
             <div className="space-y-3">
               <div className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-[#c9a84c] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
                 <p className="text-white/40 text-sm">Pretoria, Gauteng<br />South Africa</p>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-[#c9a84c] shrink-0" />
-                <a href="tel:+27671507317" className="text-white/40 hover:text-[#c9a84c] text-sm transition-colors">
+                <Phone className="w-4 h-4 text-orange-500 shrink-0" />
+                <a href="tel:+27671507317" className="text-white/40 hover:text-orange-500 text-sm transition-colors">
                   +27 67 150 7317
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[#c9a84c] shrink-0" />
-                <a href="mailto:embassysolutions01services@gmail.com" className="text-white/40 hover:text-[#c9a84c] text-sm transition-colors break-all">
+                <Mail className="w-4 h-4 text-orange-500 shrink-0" />
+                <a href="mailto:embassysolutions01services@gmail.com" className="text-white/40 hover:text-orange-500 text-sm transition-colors break-all">
                   embassysolutions01<br className="sm:hidden" />@gmail.com
                 </a>
               </div>
@@ -136,7 +146,7 @@ export default function Footer() {
       {/* Scroll to top */}
       <motion.button
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-xl bg-linear-to-br from-[#c9a84c] to-[#a88a3a] text-[#0a1628] flex items-center justify-center shadow-lg shadow-[#c9a84c]/20"
+        className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-xl bg-blue-500 text-white flex items-center justify-center shadow-lg shadow-gold/20"
         whileHover={{ scale: 1.1, y: -2 }}
         whileTap={{ scale: 0.9 }}
         initial={{ opacity: 0, y: 20 }}

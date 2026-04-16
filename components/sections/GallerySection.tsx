@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink } from "lucide-react";
+import { X,  } from "lucide-react";
 
 const galleryItems = [
   {
@@ -73,20 +73,20 @@ export default function GallerySection() {
     : galleryItems.filter((item) => item.category === activeCategory);
 
   return (
-    <section id="gallery" className="relative py-24 sm:py-32 bg-[#faf8f3]">
-      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#c9a84c]/50 to-transparent" />
+    <section id="gallery" className="relative py-24 sm:py-32 bg-cream">
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-gold/50 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <AnimatedSection className="text-center mb-12">
-          <span className="text-[#c9a84c] font-semibold text-sm tracking-widest uppercase">Our Portfolio</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0a1628] mt-3 mb-5">
+          <span className=" text-orange-500 font-semibold text-sm tracking-widest uppercase">Our Portfolio</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-navy mt-3 mb-5">
             Work{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#c9a84c] to-[#a88a3a]">
+            <span className="bg-clip-text text-blue-500">
               Gallery
             </span>
           </h2>
-          <p className="text-[#0a1628]/60 max-w-2xl mx-auto text-lg">
+          <p className="text-navy/60 max-w-2xl mx-auto text-lg">
             Explore our completed projects across diplomatic missions — showcasing the quality and precision we bring to every engagement.
           </p>
         </AnimatedSection>
@@ -99,8 +99,8 @@ export default function GallerySection() {
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${
                 activeCategory === cat
-                  ? "bg-[#0a1628] text-[#c9a84c] shadow-lg"
-                  : "bg-white text-[#0a1628]/50 hover:bg-[#0a1628]/5 border border-[#0a1628]/10"
+                  ? "bg-navy text-orange-500 shadow-lg"
+                  : "bg-white text-navy/50 hover:bg-navy/5 border border-navy/10"
               }`}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
@@ -133,9 +133,9 @@ export default function GallerySection() {
                       alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-[#0a1628]/80 via-[#0a1628]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-linear-to-t from-navy/80 via-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                      <span className="text-[#c9a84c] text-xs font-semibold tracking-wider uppercase">{item.category}</span>
+                      <span className=" text-orange-500 text-xs font-semibold tracking-wider uppercase">{item.category}</span>
                       <h4 className="text-white font-bold text-lg mt-1">{item.title}</h4>
                     </div>
                   </div>
@@ -150,7 +150,7 @@ export default function GallerySection() {
       <AnimatePresence>
         {selectedImage !== null && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a1628]/95 backdrop-blur-xl p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-navy/95 backdrop-blur-xl p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -165,7 +165,7 @@ export default function GallerySection() {
             </motion.button>
 
             <motion.div
-              className="max-w-4xl w-full bg-[#132038] rounded-2xl overflow-hidden"
+              className="max-w-4xl w-full bg-navy-light rounded-2xl overflow-hidden"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -179,7 +179,7 @@ export default function GallerySection() {
                 />
               </div>
               <div className="p-6">
-                <span className="text-[#c9a84c] text-xs font-semibold tracking-wider uppercase">{galleryItems[selectedImage].category}</span>
+                <span className="text-gold text-xs font-semibold tracking-wider uppercase">{galleryItems[selectedImage].category}</span>
                 <h3 className="text-white font-bold text-xl mt-1">{galleryItems[selectedImage].title}</h3>
                 <p className="text-white/50 text-sm mt-2">{galleryItems[selectedImage].desc}</p>
               </div>

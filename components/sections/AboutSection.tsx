@@ -40,15 +40,15 @@ export default function AboutSection() {
   return (
     <section id="about" className="relative py-24 sm:py-32 bg-cream">
       {/* Decorative top border */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-gold to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-orange to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <AnimatedSection className="text-center mb-16">
-          <span className="text-gold font-semibold text-sm tracking-widest uppercase">Who We Are</span>
+          <span className="text-orange-500 font-semibold text-sm tracking-widest uppercase">Who We Are</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-navy mt-3 mb-5">
             Your Partner in{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-gold to-gold-dark">
+              <span className="relative inline-block text-transparent bg-clip-text bg-linear-to-r from-[#38BDF8] via-[#008591] to-[#38BDF8]">
               Diplomatic Excellence
             </span>
           </h2>
@@ -63,7 +63,7 @@ export default function AboutSection() {
           <AnimatedSection direction="left">
             <div className="bg-white rounded-2xl p-8 shadow-sm border border-navy/5 hover:shadow-lg transition-shadow duration-500 h-full">
               <div className="w-14 h-14 rounded-xl bg-linear-to-br from-gold/10 to-gold/5 flex items-center justify-center mb-5">
-                <Eye className="w-7 h-7 text-gold" />
+                <Eye className="w-7 h-7 text-orange-500" />
               </div>
               <h3 className="text-2xl font-bold text-navy mb-3">Our Vision</h3>
               <p className="text-navy/60 leading-relaxed">
@@ -78,7 +78,7 @@ export default function AboutSection() {
           <AnimatedSection direction="right">
             <div className="bg-navy rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow duration-500 h-full">
               <div className="w-14 h-14 rounded-xl bg-linear-to-br from-gold/20 to-gold/10 flex items-center justify-center mb-5">
-                <Target className="w-7 h-7 text-gold" />
+                <Target className="w-7 h-7 text-orange-500" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-3">Our Mission</h3>
               <p className="text-white/60 leading-relaxed">
@@ -96,7 +96,7 @@ export default function AboutSection() {
             <StaggerItem key={val.title}>
               <div className="bg-white rounded-xl p-6 border border-navy/5 hover:border-gold/30 transition-all duration-300 group hover:-translate-y-1 h-full">
                 <div className="w-12 h-12 rounded-lg bg-gold/10 group-hover:bg-gold/20 flex items-center justify-center mb-4 transition-colors duration-300">
-                  <val.icon className="w-6 h-6 text-gold" />
+                  <val.icon className="w-6 h-6 text-orange-500" />
                 </div>
                 <h4 className="text-lg font-bold text-navy mb-2">{val.title}</h4>
                 <p className="text-navy/55 text-sm leading-relaxed">{val.desc}</p>
@@ -111,7 +111,7 @@ export default function AboutSection() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold/5 rounded-full translate-y-1/2 -translate-x-1/2" />
             <div className="relative z-10">
-              <span className="text-gold font-semibold text-sm tracking-widest uppercase">Our Commitment</span>
+              <span className="text-orange-500 font-semibold text-sm tracking-widest uppercase">Our Commitment</span>
               <h3 className="text-2xl sm:text-3xl font-bold text-white mt-2 mb-8">Quality Promise</h3>
               <div className="grid sm:grid-cols-2 gap-4">
                 {promises.map((promise, i) => (
@@ -123,7 +123,7 @@ export default function AboutSection() {
                     transition={{ delay: i * 0.1 }}
                     viewport={{ once: true }}
                   >
-                    <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
                     <span className="text-white/70 text-sm leading-relaxed">{promise}</span>
                   </motion.div>
                 ))}

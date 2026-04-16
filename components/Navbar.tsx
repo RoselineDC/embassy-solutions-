@@ -40,7 +40,7 @@ export default function Navbar() {
   };
 
   return (
-    <>
+    <div>
       <motion.header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white py-2`}
         initial={{ y: -100 }}
@@ -59,12 +59,12 @@ export default function Navbar() {
               <div className="w-10 h-10 rounded-lg  flex items-center justify-center">
                 <span className="text-[#04142c] font-black text-sm tracking-tight">
                   <Image
-                  src="/white-logo.png"
-                  alt="logo"
-                  width={60}
-                  height={16}
-                  className="object-contain"
-                  
+                    src="/white-logo.png"
+                    alt="logo"
+                    width={60}
+                    height={16}
+                    className="object-contain"
+
                   />
                 </span>
               </div>
@@ -126,13 +126,13 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="flex flex-col items-center justify-center min-h-screen gap-6 pt-20">
+            <div className="flex flex-col items-center justify-center h-screen gap-6">
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.href}
                   href={link.href}
                   onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                  className={`text-2xl font-semibold transition-colors ${activeSection === link.href.replace("#", "") ? "text-gold" : "text-white/80 hover:text-white"}`}
+                  className={`text-2xl font-semibold transition-colors ${activeSection === link.href.replace("#", "") ? "text-orange-500" : "text-white/80 hover:text-white"}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
@@ -143,7 +143,7 @@ export default function Navbar() {
               <motion.a
                 href="#contact"
                 onClick={(e) => { e.preventDefault(); scrollTo("#contact"); }}
-                className="mt-4 px-8 py-3 bg-linear-to-r from-gold to-gold-light text-navy font-bold text-lg rounded-lg"
+                className="mt-4 px-8 py-3 bg-blue-500 text-white font-bold text-lg rounded-lg"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
@@ -154,6 +154,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 }

@@ -7,6 +7,7 @@ import {
   Hammer, Wrench, Car, Trees, Sparkles, Droplets, Zap, Shield,
   Waves, Camera, Armchair, Monitor, ArrowRight, CheckCircle2,
 } from "lucide-react";
+import Link from "next/link";
 
 const services = [
   {
@@ -113,19 +114,19 @@ export default function ServicesSection() {
     : services.filter((s) => s.category === activeCategory);
 
   return (
-    <section id="services" className="relative py-24 sm:py-32 bg-[#0a1628]">
+    <section id="services" className="relative py-24 sm:py-32 bg-navy">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c9a84c]/50 to-transparent" />
-      <div className="absolute top-20 right-10 w-72 h-72 bg-[#c9a84c]/3 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-[#c9a84c]/2 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-gold/50 to-transparent" />
+      <div className="absolute top-20 right-10 w-72 h-72 bg-gold/3 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-gold/2 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <AnimatedSection className="text-center mb-12">
-          <span className="text-[#c9a84c] font-semibold text-sm tracking-widest uppercase">What We Offer</span>
+          <span className="text-orange-500 font-semibold text-sm tracking-widest uppercase">What We Offer</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-3 mb-5">
             Comprehensive{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c9a84c] to-[#e2c772]">
+            <span className="relative inline-block text-transparent bg-clip-text bg-linear-to-r from-[#38BDF8] via-[#008591] to-[#38BDF8]">
               Service Solutions
             </span>
           </h2>
@@ -140,11 +141,10 @@ export default function ServicesSection() {
             <motion.button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeCategory === cat.id
-                  ? "bg-[#c9a84c] text-[#0a1628] shadow-lg shadow-[#c9a84c]/20"
-                  : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/10"
-              }`}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === cat.id
+                ? "bg-[#38BDF8] shadow-lg shadow-gold/20 border border-orange-500"
+                : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/50"
+                }`}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -167,7 +167,7 @@ export default function ServicesSection() {
                 onMouseEnter={() => setHoveredCard(i)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                <div className="group relative bg-[#132038] rounded-2xl overflow-hidden border border-white/5 hover:border-[#c9a84c]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#c9a84c]/5 h-full flex flex-col">
+                <div className="group relative bg-navy-light rounded-2xl overflow-hidden border border-white/5 hover:border-gold/30sition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/5 h-full flex flex-col">
                   {/* Image */}
                   <div className="relative h-48 overflow-hidden">
                     <img
@@ -175,24 +175,23 @@ export default function ServicesSection() {
                       alt={service.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#132038] via-transparent to-transparent" />
-                    <div className="absolute top-4 left-4 w-10 h-10 rounded-lg bg-[#c9a84c] flex items-center justify-center">
-                      <service.icon className="w-5 h-5 text-[#0a1628]" />
+                    <div className="absolute inset-0 bg-linear-to-t from-navy-light via-transparent to-transparent" />
+                    <div className="absolute top-4 left-4 w-10 h-10 rounded-lg bg-orange-500/90 flex items-center justify-center">
+                      <service.icon className="w-5 h-5 text-navy" />
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-lg font-bold text-white mb-3 group-hover:text-[#c9a84c] transition-colors duration-300">
+                    <h3 className="text-lg font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r from-[#38BDF8] via-[#008591] to-[#38BDF8] transition-colors duration-300">
                       {service.title}
                     </h3>
                     <p className="text-white/50 text-sm leading-relaxed flex-1">{service.desc}</p>
-                    <motion.div
-                      className="mt-4 flex items-center gap-2 text-[#c9a84c] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      initial={false}
-                    >
-                      Learn More <ArrowRight className="w-4 h-4" />
-                    </motion.div>
+                    <Link href={`/services/${service.category}`}>
+                      <motion.div className="mt-4 flex items-center gap-2 text-orange-500 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                        Learn More <ArrowRight className="w-4 h-4" />
+                      </motion.div>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -205,7 +204,8 @@ export default function ServicesSection() {
           <motion.a
             href="#contact"
             onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#c9a84c] to-[#e2c772] text-[#0a1628] font-bold rounded-lg hover:shadow-xl hover:shadow-[#c9a84c]/20 transition-all duration-300"
+            className="inline-flex items-center text-white gap-2 px-8 py-3.5 bg-linear-to-r from-[#38BDF8] via-[#008591] to-[#38BDF8] transition-colors duration-300
+                      {service.title} font-bold rounded-lg hover:shadow-xl hover:shadow-gold/20 transition-all duration-300"
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.97 }}
           >

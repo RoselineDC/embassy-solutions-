@@ -58,37 +58,10 @@ export default function HeroSection() {
 
         {/* Ambient glow */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-[#38BDF8]/20 blur-[120px] rounded-full" />
-          <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-[#FACC15]/15 blur-[120px] rounded-full" />
+          <div className="absolute top-1/3 left-1/4 w-100 h-100 bg-[#38BDF8]/20 blur-[120px] rounded-full" />
+          <div className="absolute bottom-1/4 right-1/4 w-75 h-75 bg-[#FACC15]/15 blur-[120px] rounded-full" />
         </div>
       </div>
-
-      {/* Falling Particles */}
-      {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(25)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1.5 h-1.5 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `-10px`,
-              background: i % 3 === 0 ? "#FACC15" : "#38BDF8",
-              opacity: 0.6,
-            }}
-            animate={{
-              y: ["0vh", "110vh"],
-              opacity: [0, 0.8, 0],
-            }}
-            transition={{
-              duration: 6 + Math.random() * 4,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "linear",
-            }}
-          />
-        ))}
-      </div> */}
-
       {/* Content */}
       <div
         className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 w-full"
@@ -117,7 +90,7 @@ export default function HeroSection() {
                 scale: 1.05,
                 boxShadow: "0 0 25px rgba(56, 189, 248, 0.25)",
               }}
-              className="relative inline-flex rounded-full p-[1px] mb-6"
+              className="relative inline-flex rounded-full p-px mb-6"
             >
               <div
                 className="absolute inset-0 rounded-full"
@@ -183,7 +156,7 @@ export default function HeroSection() {
                   e.preventDefault();
                   document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/20 text-white font-semibold text-sm rounded-lg hover:bg-[#FACC15]/10 hover:border-orange-600 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/20 gradient-border-hover text-white font-semibold text-sm rounded-lg hover:bg-navy transition-all duration-300"
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -199,7 +172,7 @@ export default function HeroSection() {
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
-                className="text-center p-4 rounded-xl bg-white/15 backdrop-blur-md border border-white/10 hover:border-orange-600 transition-all"
+                className="text-center p-4 rounded-xl bg-white/15 backdrop-blur-md border border-white/10 gradient-border-hover  hover:bg-navy transition-all"
                 whileHover={{ y: -4 }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -223,7 +196,7 @@ export default function HeroSection() {
         transition={{ duration: 2, repeat: Infinity }}
       >
         <span className="text-white text-xs tracking-widest uppercase">Scroll</span>
-        <div className="w-5 h-8 border border-orange-600 rounded-full flex justify-center pt-1.5">
+        <div className="w-5 h-8 border border-orange-600 bg-navy rounded-full flex justify-center pt-1.5">
           <motion.div
             className="w-1 h-2 bg-[#38BDF8] rounded-full"
             animate={{ y: [0, 8, 0], opacity: [1, 0.3, 1] }}

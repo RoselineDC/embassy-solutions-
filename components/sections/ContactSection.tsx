@@ -67,10 +67,10 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <AnimatedSection className="text-center mb-16">
-          <span className="text-gold font-semibold text-sm tracking-widest uppercase">Get In Touch</span>
+          <span className="text-orange-500 font-semibold text-sm tracking-widest uppercase">Get In Touch</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-3 mb-5">
             Contact{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-gold to-gold-light">
+            <span className="bg-clip-text text-blue-500">
               Us
             </span>
           </h2>
@@ -84,11 +84,11 @@ export default function ContactSection() {
           {contactInfo.map((info, i) => (
             <AnimatedSection key={info.title} delay={i * 0.1}>
               <motion.div
-                className="bg-navy-light rounded-xl p-5 border border-white/5 hover:border-gold/30 transition-all duration-300 group h-full"
+                className="bg-navy-light rounded-xl p-5 border border-white/5 gradient-border-hover transition-all duration-300 group h-full"
                 whileHover={{ y: -3 }}
               >
-                <div className="w-11 h-11 rounded-lg bg-gold/10 group-hover:bg-gold/20 flex items-center justify-center mb-3 transition-colors">
-                  <info.icon className="w-5 h-5 text-gold" />
+                <div className="w-11 h-11 rounded-lg bg-orange-500/10 group-hover:bg-orange-500/20 flex items-center justify-center mb-3 transition-colors">
+                  <info.icon className="w-5 h-5 text-orange-500" />
                 </div>
                 <h4 className="text-white font-semibold text-sm mb-2">{info.title}</h4>
                 {info.details.map((d, j) => (
@@ -97,7 +97,7 @@ export default function ContactSection() {
                 {info.action && (
                   <a
                     href={info.href}
-                    className="inline-flex items-center gap-1 text-gold text-xs font-medium mt-3 hover:underline"
+                    className="inline-flex items-center gap-1 text-orange-500 text-xs font-medium mt-3 hover:underline"
                   >
                     {info.action}
                   </a>
@@ -111,7 +111,7 @@ export default function ContactSection() {
         <div className="grid lg:grid-cols-5 gap-8">
           {/* Form */}
           <AnimatedSection direction="left" className="lg:col-span-3">
-            <div className="bg-navy-light rounded-2xl p-6 sm:p-8 border border-white/5">
+            <div className="bg-navy-light rounded-2xl p-6 sm:p-8 border border-orange-500/30">
               <h3 className="text-xl font-bold text-white mb-6">Send Us a Message</h3>
 
               {submitted ? (
@@ -130,49 +130,49 @@ export default function ContactSection() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-white/50 text-xs font-medium mb-1.5 block">Full Name *</label>
+                      <label className="text-white/50 text-xs font-medium mb-1.5 block">Full Name <span className="text-orange-500">*</span></label>
                       <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/25 transition-all"
-                        placeholder="John Doe"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-gold/25 transition-all"
+                        placeholder="Lynne Smith"
                       />
                     </div>
                     <div>
-                      <label className="text-white/50 text-xs font-medium mb-1.5 block">Email Address *</label>
+                      <label className="text-white/50 text-xs font-medium mb-1.5 block">Email Address <span className="text-orange-500">*</span></label>
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-[#c9a84c]/25 transition-all"
-                        placeholder="john@embassy.gov"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/25 transition-all"
+                        placeholder="lynne@emmbassysolutions.co.za"
                       />
                     </div>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-white/50 text-xs font-medium mb-1.5 block">Phone Number</label>
+                      <label className="text-white/50 text-xs font-medium mb-1.5 block">Phone Number <span className="text-orange-500">*</span></label>
                       <input
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/25 transition-all"
-                        placeholder="+27 XX XXX XXXX"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/25 transition-all"
+                        placeholder="+27 74 321 9765"
                       />
                     </div>
                     <div>
-                      <label className="text-white/50 text-xs font-medium mb-1.5 block">Service Required</label>
+                      <label className="text-white/50 text-xs font-medium mb-1.5 block">Service Required <span className="text-orange-500">*</span></label>
                       <select
                         name="service"
                         value={formData.service}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/25 transition-all appearance-none"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/25 transition-all appearance-none"
                       >
                         <option value="" className="bg-navy-light">Select a service</option>
                         <option value="construction" className="bg-navy-light">Construction & Renovation</option>
@@ -190,27 +190,27 @@ export default function ContactSection() {
                     </div>
                   </div>
                   <div>
-                    <label className="text-white/50 text-xs font-medium mb-1.5 block">Message *</label>
+                    <label className="text-white/50 text-xs font-medium mb-1.5 block">Message <span className="text-orange-500">*</span></label>
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       required
                       rows={4}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/25 transition-all resize-none"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/25 transition-all"
                       placeholder="Tell us about your requirements..."
                     />
                   </div>
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 bg-linear-to-r from-gold to-gold-light text-navy font-bold rounded-lg hover:shadow-lg hover:shadow-gold/20 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="w-full py-3.5 border bg-blue-500 text-white font-bold rounded-lg hover:shadow-lg hover:shadow-gold/20 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2"
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.99 }}
                   >
                     {isSubmitting ? (
                       <motion.div
-                        className="w-5 h-5 border-2 border-navy/30 border-t-navy rounded-full"
+                        className="w-5 h-5 border border-orange-500/30 rounded-full"
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                       />
@@ -231,7 +231,7 @@ export default function ContactSection() {
             {/* Map */}
             <div className="bg-navy-light rounded-2xl overflow-hidden border border-white/5 flex-1 min-h-55">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57243.28633848732!2d28.1544076!3d-25.7479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9561b2e4f5c7a7%3A0x3f5a0f1d6c7a9b4!2sPretoria%2C%20South%20Africa!5e0!3m2!1sen!2sus!4v1700000000000"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114981.80107507118!2d28.181481247747136!3d-25.764575064601043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e955d95421be97f%3A0xd96334cb73a58387!2sEmbassy%20Solutions!5e0!3m2!1sen!2sza!4v1775649095108!5m2!1sen!2sza"
                 className="w-full h-full min-h-55 border-0 grayscale contrast-110 opacity-70"
                 allowFullScreen
                 loading="lazy"
@@ -263,7 +263,7 @@ export default function ContactSection() {
                   className="flex items-center gap-3 p-3 rounded-xl bg-gold/10 hover:bg-gold/20 border border-gold/20 transition-all group"
                   whileHover={{ x: 4 }}
                 >
-                  <Globe className="w-5 h-5 text-gold" />
+                  <Globe className="w-5 h-5 text-orange-500" />
                   <div>
                     <p className="text-white text-sm font-medium">Website</p>
                     <p className="text-white/40 text-xs">www.embassysolutions.co.za</p>
