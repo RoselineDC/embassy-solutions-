@@ -20,7 +20,8 @@ export default function HeroSection() {
           alt="Embassy Solutions Team"
           fill
           priority
-          className="object-cover"
+          sizes="100vw"
+          className="object-fit object-center opacity-90"
         />
         {/* Top Gradient for Title Readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-transparent h-1/3" />
@@ -33,8 +34,8 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          
-          
+
+
           {/* Decorative Divider */}
           <div className="flex items-center justify-center gap-4 mb-6">
             <div className="h-[1px] w-12 bg-[#B8860B]" />
@@ -62,7 +63,7 @@ export default function HeroSection() {
       <div className="relative z-10 w-full">
         {/* Blue Bottom Bar Overlay */}
         <div className="absolute inset-0 bg-[#0B3D91]/90 backdrop-blur-sm border-t-4 border-[#B8860B]" />
-        
+
         <div className="relative max-w-7xl mx-auto px-4 py-3 md:py-5">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {services.map((service, index) => (
@@ -79,7 +80,7 @@ export default function HeroSection() {
                   {/* Outer Ring Decoration */}
                   <div className="absolute inset-[-3px] rounded-full border border-white/30" />
                 </div>
-                
+
                 {/* Label */}
                 <span className="text-white font-bold uppercase tracking-widest text-[10px] md:text-xs group-hover:text-[#38BDF8] transition-colors">
                   {service.label}
