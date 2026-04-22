@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Globe } from "lucide-react";
 import Image from "next/image";
 
 const navLinks = [
@@ -13,10 +13,19 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
+const languages = [
+  { code: "EN", label: "English" },
+  { code: "ES", label: "Español" },
+  { code: "FR", label: "Français" },
+  { code: "DE", label: "Deutsch" },
+];
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("EN");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,50 +51,68 @@ export default function Navbar() {
   return (
     <div>
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white py-2`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isScrolled
+            ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-[#0B3D91]/10"
+            : "bg-white/80 backdrop-blur-sm"
+        }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center justify-between">
+          <nav className="flex items-center justify-between py-3 md:py-4">
+            {/* Logo and Brand */}
             <motion.a
               href="#home"
-              onClick={(e) => { e.preventDefault(); scrollTo("#home"); }}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo("#home");
+              }}
               className="flex items-center gap-3 group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="w-10 h-10 rounded-lg  flex items-center justify-center">
-                <span className="text-[#04142c] font-black text-sm tracking-tight">
-                  <Image
-                    src="/white-logo.png"
-                    alt="logo"
-                    width={60}
-                    height={16}
-                    className="object-contain"
-
-                  />
-                </span>
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0B3D91] to-[#1097d1] flex items-center justify-center shadow-md">
+                <Image
+                  src="/white-logo.png"
+                  alt="Embassy Solutions Logo"
+                  width={32}
+                  height={32}
+                  className="object-contain"
+                />
               </div>
               <div className="hidden sm:block">
-                <p className="text-black/90 font-bold text-lg leading-tight tracking-wide uppercase font-sans">Embassy Solutions</p>
+                <p className="text-[#0B3D91] font-serif font-bold text-lg leading-tight tracking-wide uppercase">
+                  Embassy Solutions
+                </p>
+                <p className="text-[#B8860B] text-[10px] font-semibold tracking-[0.15em] uppercase">
+                  Global Diplomatic Services
+                </p>
               </div>
             </motion.a>
 
+            {/* Desktop Navigation Links */}
             <div className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => (
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                  className={`relative px-4 py-2 text-md font-medium transition-colors duration-300 ${activeSection === link.href.replace("#", "") ? "text-[#051a44]" : "text-[#051a44]/80 hover:text-blue-500"}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo(link.href);
+                  }}
+                  className={`relative px-4 py-2 text-sm font-semibold transition-colors duration-300 ${
+                    activeSection === link.href.replace("#", "")
+                      ? "text-[#0B3D91]"
+                      : "text-[#0B3D91]/70 hover:text-[#1097d1]"
+                  }`}
                   whileHover={{ y: -1 }}
                 >
                   {link.label}
                   {activeSection === link.href.replace("#", "") && (
                     <motion.div
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-0.75 bg-orange-500/70 rounded-full"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-gradient-to-r from-[#B8860B] to-[#1097d1] rounded-full"
                       layoutId="activeNav"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
@@ -94,45 +121,114 @@ export default function Navbar() {
               ))}
             </div>
 
-            <div className="hidden lg:flex items-center gap-3">
-              <motion.a href="tel:+27671507317" className="flex items-center gap-2 text-gray-500  hover:text-[#d37c0a] text-sm transition-colors" whileHover={{ scale: 1.02 }}>
+            {/* Right Side: Phone, Language Selector, CTA */}
+            <div className="hidden lg:flex items-center gap-4">
+              {/* Phone Number */}
+              <motion.a
+                href="tel:+27671507317"
+                className="flex items-center gap-2 text-[#0B3D91]/70 hover:text-[#1097d1] text-sm font-medium transition-colors"
+                whileHover={{ scale: 1.05 }}
+              >
                 <Phone className="w-4 h-4" />
                 <span>+27 67 150 7317</span>
               </motion.a>
+
+              {/* Language Selector */}
+              <div className="relative">
+                <motion.button
+                  onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+                  className="flex items-center gap-2 px-3 py-2 text-[#0B3D91] font-semibold text-sm border border-[#0B3D91]/20 rounded-lg hover:bg-[#0B3D91]/5 transition-all"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <Globe className="w-4 h-4" />
+                  <span>{selectedLanguage}</span>
+                </motion.button>
+
+                <AnimatePresence>
+                  {isLanguageOpen && (
+                    <motion.div
+                      className="absolute right-0 mt-2 w-40 bg-white border border-[#0B3D91]/20 rounded-lg shadow-xl z-50"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                    >
+                      {languages.map((lang) => (
+                        <motion.button
+                          key={lang.code}
+                          onClick={() => {
+                            setSelectedLanguage(lang.code);
+                            setIsLanguageOpen(false);
+                          }}
+                          className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors ${
+                            selectedLanguage === lang.code
+                              ? "bg-[#0B3D91]/10 text-[#0B3D91] border-l-2 border-[#B8860B]"
+                              : "text-[#0B3D91]/70 hover:bg-[#0B3D91]/5 hover:text-[#0B3D91]"
+                          }`}
+                          whileHover={{ paddingLeft: 20 }}
+                        >
+                          {lang.label}
+                        </motion.button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Primary CTA */}
               <motion.a
                 href="#contact"
-                onClick={(e) => { e.preventDefault(); scrollTo("#contact"); }}
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#1097d1] text-white font-bold text-sm rounded-lg hover:shadow-xl hover:shadow-[#38BDF8]/30 transition-all duration-300"
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo("#contact");
+                }}
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#0B3D91] to-[#1097d1] text-white font-bold text-sm rounded-lg shadow-lg hover:shadow-xl hover:shadow-[#0B3D91]/30 transition-all"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Get a Quote
               </motion.a>
             </div>
 
-            <motion.button className="lg:hidden text-black p-2" onClick={() => setIsMobileOpen(!isMobileOpen)} whileTap={{ scale: 0.9 }}>
-              {isMobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {/* Mobile Menu Button */}
+            <motion.button
+              className="lg:hidden text-[#0B3D91] p-2"
+              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              whileTap={{ scale: 0.9 }}
+            >
+              {isMobileOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </motion.button>
           </nav>
         </div>
       </motion.header>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-navy/98 backdrop-blur-xl lg:hidden"
+            className="fixed inset-0 z-40 bg-gradient-to-b from-[#0B3D91]/95 to-[#051a44]/95 backdrop-blur-xl lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="flex flex-col items-center justify-center h-screen gap-6">
+            <div className="flex flex-col items-center justify-center h-screen gap-8 px-4">
+              {/* Mobile Navigation Links */}
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                  className={`text-2xl font-semibold transition-colors ${activeSection === link.href.replace("#", "") ? "text-orange-500" : "text-white/80 hover:text-white"}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo(link.href);
+                  }}
+                  className={`text-2xl font-bold transition-colors ${
+                    activeSection === link.href.replace("#", "")
+                      ? "text-[#B8860B]"
+                      : "text-white/80 hover:text-white"
+                  }`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
@@ -140,13 +236,64 @@ export default function Navbar() {
                   {link.label}
                 </motion.a>
               ))}
-              <motion.a
-                href="#contact"
-                onClick={(e) => { e.preventDefault(); scrollTo("#contact"); }}
-                className="mt-4 px-8 py-3 bg-blue-500 text-white font-bold text-lg rounded-lg"
+
+              {/* Mobile Language Selector */}
+              <motion.div
+                className="w-full max-w-xs mt-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
+              >
+                <button
+                  onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white/10 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 transition-all"
+                >
+                  <Globe className="w-5 h-5" />
+                  <span>{selectedLanguage}</span>
+                </button>
+
+                <AnimatePresence>
+                  {isLanguageOpen && (
+                    <motion.div
+                      className="mt-2 bg-white/10 border border-white/20 rounded-lg overflow-hidden"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                    >
+                      {languages.map((lang) => (
+                        <button
+                          key={lang.code}
+                          onClick={() => {
+                            setSelectedLanguage(lang.code);
+                            setIsLanguageOpen(false);
+                          }}
+                          className={`w-full text-left px-4 py-3 text-sm font-medium transition-colors ${
+                            selectedLanguage === lang.code
+                              ? "bg-[#B8860B]/30 text-[#B8860B]"
+                              : "text-white/70 hover:text-white hover:bg-white/10"
+                          }`}
+                        >
+                          {lang.label}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+
+              {/* Mobile CTA */}
+              <motion.a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo("#contact");
+                }}
+                className="mt-4 px-8 py-3 bg-gradient-to-r from-[#B8860B] to-[#1097d1] text-white font-bold text-lg rounded-lg shadow-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Get a Quote
               </motion.a>
