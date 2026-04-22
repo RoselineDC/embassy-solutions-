@@ -1,197 +1,196 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Hammer, Wrench, Car, Trees, Sparkles, Droplets, Zap, Shield,
   Waves, Camera, Armchair, Monitor, ArrowRight, CheckCircle2,
+  Lock, Building2, Briefcase, Truck, Cpu
 } from "lucide-react";
-import Link from "next/link";
 
 const services = [
   {
-    icon: Hammer,
-    title: "Construction & Renovation",
-    desc: "Tailored services to meet strict quality and timeline requirements. We specialize in high-quality construction and renovation services to enhance and modernize your offices and facilities.",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
-    category: "construction",
+    icon: Building2,
+    title: "Mission Infrastructure",
+    desc: "Bespoke construction and structural renovation of diplomatic premises. We adhere to stringent international security and quality standards to modernize your official chanceries.",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    category: "infrastructure",
+    features: ["Chancery Renovation", "Structural Modernization", "Secure Facility Build"]
+  },
+  {
+    icon: Lock,
+    title: "Security & Intelligence",
+    desc: "Advanced protective solutions including high-tier CCTV integration, alarm systems, and automated access control, ensuring the absolute sanctity of sovereign territory.",
+    image: "https://images.unsplash.com/photo-1562813733-b31f71025d54?w=800&q=80",
+    category: "security",
+    features: ["CCTV & Surveillance", "Access Control Systems", "Perimeter Protection"]
+  },
+  {
+    icon: Truck,
+    title: "Diplomatic Logistics",
+    desc: "Elite chauffeur services and premium vehicle leasing for official delegations. We provide highly trained relief drivers and secure transport for high-level events.",
+    image: "https://images.unsplash.com/photo-1449965408869-ebd13bc0c322?w=800&q=80",
+    category: "logistics",
+    features: ["Official Delegations", "Chauffeur Services", "Secure Fleet Leasing"]
+  },
+  {
+    icon: Cpu,
+    title: "Secure Technology",
+    desc: "Strategic IT support specializing in mission-critical hardware diagnostics, secure network repair, and data infrastructure maintenance for diplomatic missions.",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
+    category: "technology",
+    features: ["Hardware Diagnostics", "Secure Network Support", "IT Infrastructure"]
   },
   {
     icon: Wrench,
-    title: "Maintenance & Handyman",
-    desc: "Comprehensive maintenance and handyman solutions to keep your property in top condition. From minor repairs to general upkeep, we provide reliable, efficient service.",
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80",
+    title: "Facility Management",
+    desc: "Comprehensive maintenance protocols for diplomatic residences and official premises. Reliable, efficient solutions for electrical, plumbing, and general upkeep.",
+    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
     category: "maintenance",
+    features: ["Electrical Systems", "Professional Plumbing", "General Maintenance"]
   },
   {
-    icon: Car,
-    title: "Chauffeur & Car Hiring",
-    desc: "Professional chauffeur services, including car and relief drivers, as well as the provision of premium vehicles for official delegations and special events.",
-    image: "https://images.unsplash.com/photo-1449965408869-ebd13bc0c322?w=600&q=80",
-    category: "transport",
-  },
-  {
-    icon: Trees,
-    title: "Landscaping Services",
-    desc: "Expert landscaping solutions with flexible weekly or monthly garden maintenance plans. We design and maintain outdoor spaces that are aesthetically pleasing and sustainable.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80",
-    category: "outdoor",
-  },
-  {
-    icon: Sparkles,
-    title: "Cleaning Services",
-    desc: "Thorough cleaning solutions for diplomatic residences and official premises. We offer both major and routine cleaning services, ensuring spotless and hygienic environments.",
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80",
-    category: "maintenance",
-  },
-  {
-    icon: Droplets,
-    title: "Plumbing Services",
-    desc: "Professional plumbing solutions, including installations, repairs, and maintenance for residential and commercial properties. Jojo Tank installations and outdoor showers.",
-    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80",
-    category: "maintenance",
-  },
-  {
-    icon: Monitor,
-    title: "IT Services",
-    desc: "Reliable IT support, specializing in hardware diagnostics, repair, and maintenance to keep your systems operating smoothly and securely.",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80",
-    category: "technology",
-  },
-  {
-    icon: Zap,
-    title: "Electrical Services",
-    desc: "Comprehensive electrical services for installations, maintenance, and emergency repairs. We ensure safety and compliance with all industry standards.",
-    image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&q=80",
-    category: "construction",
-  },
-  {
-    icon: Shield,
-    title: "Security Services",
-    desc: "Advanced security solutions including CCTV installation and maintenance, alarm systems, gate and garage motor repairs, ensuring safety and peace of mind.",
-    image: "https://images.unsplash.com/photo-1562813733-b31f71025d54?w=600&q=80",
-    category: "security",
-  },
-  {
-    icon: Waves,
-    title: "Swimming Pool Construction",
-    desc: "Design and construction of high-quality swimming pools, tailored to your specifications and built to the highest standards for residential and commercial use.",
-    image: "https://images.unsplash.com/photo-1572331165267-854da2b021b1?w=600&q=80",
-    category: "construction",
-  },
-  {
-    icon: Armchair,
-    title: "Event Management",
-    desc: "Full-service event management including professional catering solutions for corporate functions, delegations, and private events.",
-    image: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&q=80",
-    category: "events",
-  },
-  {
-    icon: Camera,
-    title: "Trade Facilitation",
-    desc: "We serve as a strategic link between countries, identifying business opportunities and fostering bilateral trade relationships to promote economic growth.",
-    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&q=80",
-    category: "business",
+    icon: Briefcase,
+    title: "Strategic Consulting",
+    desc: "Trade facilitation and bilateral business opportunity identification. We serve as a strategic bridge between nations to foster economic growth and cooperation.",
+    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&q=80",
+    category: "consulting",
+    features: ["Trade Facilitation", "Bilateral Opportunities", "Strategic Networking"]
   },
 ];
 
 const categories = [
-  { id: "all", label: "All Services" },
-  { id: "construction", label: "Construction" },
-  { id: "maintenance", label: "Maintenance" },
-  { id: "technology", label: "Technology" },
+  { id: "all", label: "All Operations" },
+  { id: "infrastructure", label: "Infrastructure" },
   { id: "security", label: "Security" },
-  { id: "transport", label: "Transport" },
+  { id: "logistics", label: "Logistics" },
+  { id: "technology", label: "Technology" },
+  { id: "maintenance", label: "Facility Management" },
 ];
 
 export default function ServicesSection() {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const filtered = activeCategory === "all"
     ? services
     : services.filter((s) => s.category === activeCategory);
 
   return (
-    <section id="services" className="relative py-24 sm:py-32 bg-navy">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-gold/50 to-transparent" />
-      <div className="absolute top-20 right-10 w-72 h-72 bg-gold/3 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-gold/2 rounded-full blur-3xl" />
+    <section id="services" className="relative py-24 sm:py-32 bg-[#051a44] overflow-hidden">
+      {/* Sophisticated Background Elements */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#B8860B]/50 to-transparent" />
+      <div className="absolute -top-24 -right-24 w-[500px] h-[500px] bg-[#0B3D91]/20 rounded-full blur-[120px]" />
+      <div className="absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-[#B8860B]/10 rounded-full blur-[120px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <AnimatedSection className="text-center mb-12">
-          <span className="text-orange-500 font-semibold text-sm tracking-widest uppercase">What We Offer</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-3 mb-5">
-            Comprehensive{" "}
-            <span className="relative inline-block text-transparent bg-clip-text bg-linear-to-r from-[#38BDF8] via-[#008591] to-[#38BDF8]">
-              Service Solutions
-            </span>
-          </h2>
-          <p className="text-white/50 max-w-2xl mx-auto text-lg">
-            From construction to IT, security to event management — we provide every service your embassy needs under one roof.
-          </p>
-        </AnimatedSection>
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-[#B8860B] font-bold text-xs tracking-[0.3em] uppercase"
+          >
+            Service Portfolio
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            viewport={{ once: true }}
+            className="text-4xl sm:text-5xl font-serif font-bold text-white mt-4 mb-6"
+          >
+            Diplomatic Support Pillars
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-white/60 max-w-2xl mx-auto text-lg font-medium leading-relaxed"
+          >
+            Precision-engineered solutions designed to meet the rigorous operational 
+            demands of sovereign missions and international delegations.
+          </motion.p>
+        </div>
 
-        {/* Category Filters */}
-        <AnimatedSection className="flex flex-wrap justify-center gap-2 mb-12">
+        {/* Professional Category Filters */}
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
           {categories.map((cat) => (
             <motion.button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === cat.id
-                ? "bg-[#38BDF8] shadow-lg shadow-gold/20 border border-orange-500"
-                : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/50"
-                }`}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+              className={`px-6 py-2.5 rounded-lg text-sm font-bold tracking-wide transition-all duration-300 border ${
+                activeCategory === cat.id
+                  ? "bg-[#B8860B] text-[#051a44] border-[#B8860B] shadow-lg shadow-[#B8860B]/20"
+                  : "bg-white/5 text-white/60 border-white/10 hover:bg-white/10 hover:text-white"
+              }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {cat.label}
             </motion.button>
           ))}
-        </AnimatedSection>
+        </div>
 
-        {/* Services Grid */}
-        <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Professional Services Grid */}
+        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
             {filtered.map((service, i) => (
               <motion.div
                 key={service.title}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.35, delay: i * 0.05 }}
-                onMouseEnter={() => setHoveredCard(i)}
-                onMouseLeave={() => setHoveredCard(null)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
               >
-                <div className="group relative bg-navy-light rounded-2xl overflow-hidden border border-white/5 hover:border-gold/30sition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/5 h-full flex flex-col">
-                  {/* Image */}
-                  <div className="relative h-48 overflow-hidden">
+                <div className="group relative bg-[#0B3D91]/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-[#B8860B]/50 transition-all duration-500 flex flex-col h-full shadow-xl">
+                  {/* Visual Element */}
+                  <div className="relative h-56 overflow-hidden">
                     <img
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-100"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-navy-light via-transparent to-transparent" />
-                    <div className="absolute top-4 left-4 w-10 h-10 rounded-lg bg-orange-500/90 flex items-center justify-center">
-                      <service.icon className="w-5 h-5 text-navy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#051a44] via-transparent to-transparent" />
+                    <div className="absolute top-4 right-4 px-3 py-1 bg-[#051a44]/80 backdrop-blur-md border border-white/10 rounded-full">
+                      <span className="text-[#B8860B] text-[10px] font-bold uppercase tracking-widest">{service.category}</span>
                     </div>
                   </div>
 
-                  {/* Content */}
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-lg font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r from-[#38BDF8] via-[#008591] to-[#38BDF8] transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <p className="text-white/50 text-sm leading-relaxed flex-1">{service.desc}</p>
-                    <Link href={`/services/${service.category}`}>
-                      <motion.div className="mt-4 flex items-center gap-2 text-orange-500 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
-                        Learn More <ArrowRight className="w-4 h-4" />
-                      </motion.div>
-                    </Link>
+                  {/* Service Content */}
+                  <div className="p-8 flex-1 flex flex-col">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-[#B8860B]/10 flex items-center justify-center group-hover:bg-[#B8860B] transition-colors duration-500">
+                        <service.icon className="w-6 h-6 text-[#B8860B] group-hover:text-[#051a44]" />
+                      </div>
+                      <h3 className="text-xl font-serif font-bold text-white group-hover:text-[#B8860B] transition-colors">
+                        {service.title}
+                      </h3>
+                    </div>
+                    
+                    <p className="text-white/60 text-sm leading-relaxed mb-6 font-medium">
+                      {service.desc}
+                    </p>
+
+                    {/* Feature List */}
+                    <div className="space-y-3 mb-8">
+                      {service.features.map((feature) => (
+                        <div key={feature} className="flex items-center gap-2 text-white/40 group-hover:text-white/70 transition-colors">
+                          <CheckCircle2 className="w-4 h-4 text-[#B8860B]" />
+                          <span className="text-xs font-semibold">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-auto pt-6 border-t border-white/5">
+                      <motion.button 
+                        className="flex items-center gap-2 text-[#B8860B] text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-4 transition-all"
+                      >
+                        Request Consultation <ArrowRight className="w-4 h-4" />
+                      </motion.button>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -199,20 +198,28 @@ export default function ServicesSection() {
           </AnimatePresence>
         </motion.div>
 
-        {/* CTA */}
-        <AnimatedSection className="text-center mt-14">
+        {/* Global Support Footer */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-20 p-10 bg-gradient-to-r from-[#0B3D91] to-[#051a44] rounded-3xl border border-white/5 text-center shadow-2xl"
+        >
+          <h3 className="text-2xl font-serif font-bold text-white mb-4">Require a Specialized Solution?</h3>
+          <p className="text-white/60 max-w-xl mx-auto mb-8 font-medium">
+            Our team is equipped to handle unique diplomatic requirements that may not be listed. 
+            Contact our strategic operations desk for a confidential assessment.
+          </p>
           <motion.a
             href="#contact"
-            onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
-            className="inline-flex items-center text-white gap-2 px-8 py-3.5 bg-linear-to-r from-[#38BDF8] via-[#008591] to-[#38BDF8] transition-colors duration-300
-                      {service.title} font-bold rounded-lg hover:shadow-xl hover:shadow-gold/20 transition-all duration-300"
-            whileHover={{ scale: 1.03, y: -2 }}
-            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-3 px-10 py-4 bg-[#B8860B] text-[#051a44] font-bold rounded-xl shadow-lg hover:shadow-[#B8860B]/20 transition-all"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
           >
-            Request a Service
-            <ArrowRight className="w-4 h-4" />
+            Contact Operations Desk
+            <ArrowRight className="w-5 h-5" />
           </motion.a>
-        </AnimatedSection>
+        </motion.div>
       </div>
     </section>
   );
