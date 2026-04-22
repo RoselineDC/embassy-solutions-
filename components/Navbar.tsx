@@ -73,7 +73,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0B3D91] to-[#1097d1] flex items-center justify-center shadow-md">
+              <div className="w-12 h-12 rounded-full bg-linear-to-br from-[#0B3D91] to-[#1097d1] flex items-center justify-center shadow-md">
                 <Image
                   src="/white-logo.png"
                   alt="Embassy Solutions Logo"
@@ -112,7 +112,7 @@ export default function Navbar() {
                   {link.label}
                   {activeSection === link.href.replace("#", "") && (
                     <motion.div
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-gradient-to-r from-[#B8860B] to-[#1097d1] rounded-full"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-linear-to-r from-[#B8860B] to-[#1097d1] rounded-full"
                       layoutId="activeNav"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
@@ -181,7 +181,7 @@ export default function Navbar() {
                   e.preventDefault();
                   scrollTo("#contact");
                 }}
-                className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#0B3D91] to-[#1097d1] text-white font-bold text-sm rounded-lg shadow-lg hover:shadow-xl hover:shadow-[#0B3D91]/30 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-linear-to-r from-[#0B3D91] to-[#1097d1] text-white font-bold text-sm rounded-lg shadow-lg hover:shadow-xl hover:shadow-[#0B3D91]/30 transition-all"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -209,7 +209,7 @@ export default function Navbar() {
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-gradient-to-b from-[#0B3D91]/95 to-[#051a44]/95 backdrop-blur-xl lg:hidden"
+            className="fixed inset-0 z-40 bg-linear-to-b from-[#0B3D91]/95 to-[#051a44]/95 backdrop-blur-xl lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -288,7 +288,7 @@ export default function Navbar() {
                   e.preventDefault();
                   scrollTo("#contact");
                 }}
-                className="mt-4 px-8 py-3 bg-gradient-to-r from-[#B8860B] to-[#1097d1] text-white font-bold text-lg rounded-lg shadow-lg"
+                className="mt-4 px-8 py-3 bg-linear-to-r from-[#B8860B] to-[#1097d1] text-white font-bold text-lg rounded-lg shadow-lg"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
