@@ -74,19 +74,19 @@ const SERVICES = [
 ];
 
 const STATS = [
-  { icon: Globe,      value: '150+', label: 'Premises Maintained'  },
-  { icon: ShieldCheck, value: '99.9%', label: 'Uptime Reliability'  },
-  { icon: TrendingUp,  value: '95%',   label: 'Downtime Reduction'  },
-  { icon: Award,       value: '100%',  label: 'Compliance Rate'     },
+  { icon: Globe, value: '150+', label: 'Premises Maintained' },
+  { icon: ShieldCheck, value: '99.9%', label: 'Uptime Reliability' },
+  { icon: TrendingUp, value: '95%', label: 'Downtime Reduction' },
+  { icon: Award, value: '100%', label: 'Compliance Rate' },
 ];
 
 const SCOPE_SPECS = [
-  { area: 'Structural & Civil Works',    frequency: 'Scheduled & Emergency', coverage: 'Full Premises' },
-  { area: 'Electrical & Power Systems',  frequency: 'Preventive Monthly',    coverage: 'All Systems'   },
-  { area: 'HVAC & Climate Systems',      frequency: 'Quarterly Servicing',   coverage: 'Full Coverage' },
-  { area: 'Plumbing & Water Systems',    frequency: 'On-Demand & Preventive',coverage: 'All Facilities'},
-  { area: 'Security Tech Systems',       frequency: 'Weekly Inspection',     coverage: 'Perimeter & Interior'},
-  { area: 'Cleaning & Sanitation',       frequency: 'Daily / Deep Clean',    coverage: 'All Zones'     },
+  { area: 'Structural & Civil Works', frequency: 'Scheduled & Emergency', coverage: 'Full Premises' },
+  { area: 'Electrical & Power Systems', frequency: 'Preventive Monthly', coverage: 'All Systems' },
+  { area: 'HVAC & Climate Systems', frequency: 'Quarterly Servicing', coverage: 'Full Coverage' },
+  { area: 'Plumbing & Water Systems', frequency: 'On-Demand & Preventive', coverage: 'All Facilities' },
+  { area: 'Security Tech Systems', frequency: 'Weekly Inspection', coverage: 'Perimeter & Interior' },
+  { area: 'Cleaning & Sanitation', frequency: 'Daily / Deep Clean', coverage: 'All Zones' },
 ];
 
 /* ================= PAGE ================= */
@@ -108,11 +108,10 @@ export default function MaintenancePage() {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
-          scrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${scrolled
             ? 'bg-white/95 backdrop-blur-md py-4 border-gray-200/50 shadow-lg'
             : 'bg-transparent py-6 border-transparent'
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <button
@@ -357,10 +356,7 @@ export default function MaintenancePage() {
               className="w-full sm:w-auto bg-[#0B3D91] text-white px-12 py-5 rounded-2xl font-bold
                          hover:scale-105 hover:shadow-2xl hover:shadow-[#0B3D91]/30 transition-all
                          flex items-center justify-center gap-3"
-                         onClick={(e) => {
-                  e.stopPropagation();
-                  router.push("/#contact");
-                }}
+              
             >
               Contact Maintenance Desk <ArrowRight size={20} />
             </button>
@@ -374,7 +370,7 @@ export default function MaintenancePage() {
           </div>
         </motion.div>
       </section>
- <ContactSection />
+      <ContactSection />
       <Footer />
     </div>
   );
