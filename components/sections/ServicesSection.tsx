@@ -7,6 +7,7 @@ import {
   Waves, Camera, Armchair, Monitor, ArrowRight, CheckCircle2,
   Lock, Building2, Briefcase, Truck, Cpu
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const services = [
   {
@@ -15,6 +16,7 @@ const services = [
     desc: "Bespoke construction and structural renovation of diplomatic premises. We adhere to stringent international security and quality standards to modernize your official chanceries.",
     image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
     category: "infrastructure",
+    path: "/services/construction",
     features: ["Chancery Renovation", "Structural Modernization", "Secure Facility Build"]
   },
   {
@@ -23,6 +25,8 @@ const services = [
     desc: "Advanced protective solutions including high-tier CCTV integration, alarm systems, and automated access control, ensuring the absolute sanctity of sovereign territory.",
     image: "https://images.unsplash.com/photo-1562813733-b31f71025d54?w=800&q=80",
     category: "security",
+    path: "/services/security",
+
     features: ["CCTV & Surveillance", "Access Control Systems", "Perimeter Protection"]
   },
   {
@@ -31,23 +35,58 @@ const services = [
     desc: "Elite chauffeur services and premium vehicle leasing for official delegations. We provide highly trained relief drivers and secure transport for high-level events.",
     image: "https://images.unsplash.com/photo-1449965408869-ebd13bc0c322?w=800&q=80",
     category: "logistics",
+    path: "/services/logistics",
+
     features: ["Official Delegations", "Chauffeur Services", "Secure Fleet Leasing"]
   },
   {
-    icon: Cpu,
-    title: "Secure Technology",
-    desc: "Strategic IT support specializing in mission-critical hardware diagnostics, secure network repair, and data infrastructure maintenance for diplomatic missions.",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
-    category: "technology",
-    features: ["Hardware Diagnostics", "Secure Network Support", "IT Infrastructure"]
-  },
-  {
     icon: Wrench,
-    title: "Facility Management",
-    desc: "Comprehensive maintenance protocols for diplomatic residences and official premises. Reliable, efficient solutions for electrical, plumbing, and general upkeep.",
+    title: "Maintenance Services",
+    desc: "Comprehensive facility maintenance solutions ensuring operational excellence for diplomatic premises, including infrastructure upkeep, utilities, and sanitation.",
     image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
     category: "maintenance",
-    features: ["Electrical Systems", "Professional Plumbing", "General Maintenance"]
+    path: "/services/maintenance",
+
+    features: [
+      "Building Maintenance",
+      "Electrical & Power Systems",
+      "HVAC Systems",
+      "Plumbing Services",
+      "Security Systems",
+      "Cleaning & Sanitation"
+    ],
+    subServices: [
+      {
+        title: "Building Maintenance",
+        desc: "Repairs, painting, roofing, and flooring",
+        image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80"
+      },
+      {
+        title: "Electrical & Power",
+        desc: "Lighting, wiring, generators, backup systems",
+        image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80"
+      },
+      {
+        title: "HVAC Systems",
+        desc: "Air conditioning, ventilation, heating",
+        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=800&q=80"
+      },
+      {
+        title: "Plumbing",
+        desc: "Pipes, drainage, water systems",
+        image: "https://images.unsplash.com/photo-1600566752227-8f3b0c0d5d9b?w=800&q=80"
+      },
+      {
+        title: "Security Systems",
+        desc: "CCTV, alarms, access control",
+        image: "https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=80"
+      },
+      {
+        title: "Cleaning Services",
+        desc: "Daily cleaning, deep cleaning, sanitation",
+        image: "https://images.unsplash.com/photo-1581578017420-ec0f8c1b4b2c?w=800&q=80"
+      }
+    ]
   },
   {
     icon: Briefcase,
@@ -55,6 +94,7 @@ const services = [
     desc: "Trade facilitation and bilateral business opportunity identification. We serve as a strategic bridge between nations to foster economic growth and cooperation.",
     image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&q=80",
     category: "consulting",
+    path: "/services/consulting",
     features: ["Trade Facilitation", "Bilateral Opportunities", "Strategic Networking"]
   },
 ];
@@ -64,13 +104,12 @@ const categories = [
   { id: "infrastructure", label: "Infrastructure" },
   { id: "security", label: "Security" },
   { id: "logistics", label: "Logistics" },
-  { id: "technology", label: "Technology" },
   { id: "maintenance", label: "Facility Management" },
 ];
 
 export default function ServicesSection() {
   const [activeCategory, setActiveCategory] = useState("all");
-
+  const router = useRouter();
   const filtered = activeCategory === "all"
     ? services
     : services.filter((s) => s.category === activeCategory);
@@ -85,7 +124,7 @@ export default function ServicesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Section */}
         <div className="text-center mb-16">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -93,7 +132,7 @@ export default function ServicesSection() {
           >
             Service Portfolio
           </motion.span>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -102,14 +141,14 @@ export default function ServicesSection() {
           >
             Diplomatic Support Pillars
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             viewport={{ once: true }}
             className="text-white/60 max-w-2xl mx-auto text-lg font-medium leading-relaxed"
           >
-            Precision-engineered solutions designed to meet the rigorous operational 
+            Precision-engineered solutions designed to meet the rigorous operational
             demands of sovereign missions and international delegations.
           </motion.p>
         </div>
@@ -120,11 +159,10 @@ export default function ServicesSection() {
             <motion.button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-6 py-2.5 rounded-lg text-sm font-bold tracking-wide transition-all duration-300 border ${
-                activeCategory === cat.id
-                  ? "bg-[#B8860B] text-[#051a44] border-[#B8860B] shadow-lg shadow-[#B8860B]/20"
-                  : "bg-white/5 text-white/60 border-white/10 hover:bg-white/10 hover:text-white"
-              }`}
+              className={`px-6 py-2.5 rounded-lg text-sm font-bold tracking-wide transition-all duration-300 border ${activeCategory === cat.id
+                ? "bg-[#B8860B] text-[#051a44] border-[#B8860B] shadow-lg shadow-[#B8860B]/20"
+                : "bg-white/5 text-white/60 border-white/10 hover:bg-white/10 hover:text-white"
+                }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -145,7 +183,9 @@ export default function ServicesSection() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
               >
-                <div className="group relative bg-[#0B3D91]/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-[#B8860B]/50 transition-all duration-500 flex flex-col h-full shadow-xl">
+                <div
+                  onClick={() => router.push(service.path)}
+                  className="group relative bg-[#0B3D91]/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-[#B8860B]/50 transition-all duration-500 flex flex-col h-full shadow-xl">
                   {/* Visual Element */}
                   <div className="relative h-56 overflow-hidden">
                     <img
@@ -169,7 +209,7 @@ export default function ServicesSection() {
                         {service.title}
                       </h3>
                     </div>
-                    
+
                     <p className="text-white/60 text-sm leading-relaxed mb-6 font-medium">
                       {service.desc}
                     </p>
@@ -185,8 +225,12 @@ export default function ServicesSection() {
                     </div>
 
                     <div className="mt-auto pt-6 border-t border-white/5">
-                      <motion.button 
+                      <motion.button
                         className="flex items-center gap-2 text-[#B8860B] text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-4 transition-all"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          router.push("/#contact");
+                        }}
                       >
                         Request Consultation <ArrowRight className="w-4 h-4" />
                       </motion.button>
@@ -199,7 +243,7 @@ export default function ServicesSection() {
         </motion.div>
 
         {/* Global Support Footer */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -207,7 +251,7 @@ export default function ServicesSection() {
         >
           <h3 className="text-2xl font-serif font-bold text-white mb-4">Require a Specialized Solution?</h3>
           <p className="text-white/60 max-w-xl mx-auto mb-8 font-medium">
-            Our team is equipped to handle unique diplomatic requirements that may not be listed. 
+            Our team is equipped to handle unique diplomatic requirements that may not be listed.
             Contact our strategic operations desk for a confidential assessment.
           </p>
           <motion.a

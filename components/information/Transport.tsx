@@ -1,7 +1,9 @@
-'use client';
+'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import {
   Car,
   Shield,
@@ -11,636 +13,321 @@ import {
   Radio,
   Award,
   CheckCircle2,
-  Navigation,
-  Smartphone,
-  Headphones,
-  TrendingUp,
   Globe,
-  Gauge,
+  TrendingUp,
+  Smartphone,
+  ArrowLeft,
   ArrowRight,
-  X,
-  Phone,
-  Mail,
-  AlertCircle,
+  ShieldCheck,
+  Navigation,
+  Zap
 } from 'lucide-react';
-import Image from 'next/image';
-
-
-// ============================================================================
-// DATA LAYER - Separated for scalability and clarity
-// ============================================================================
-
-const STATS = [
-  { icon: Globe, value: '50+', label: 'Countries Served' },
-  { icon: Car, value: '200+', label: 'Armored Vehicles' },
-  { icon: TrendingUp, value: '99.9%', label: 'On-Time Performance' },
-  { icon: Award, value: 'Zero', label: 'Security Incidents' },
-];
+import ContactSection from '../sections/ContactSection';
+import Footer from '../Footer';
 
 const SERVICES = [
   {
     icon: Car,
-    title: 'Armored Vehicle Fleet',
-    description: 'State-of-the-art armored vehicles providing maximum protection for diplomatic personnel.',
-    features: ['B6/B7 Protection', 'GPS Tracking', 'Emergency Communications'],
-    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663564530652/BYj5ACauk9YBxqUms6NPLg/hero-armored-vehicle-nh4K6HPSAGDVUJ9uVN2qBc.webp',
+    title: 'Sovereign Fleet Operations',
+    description: 'High-tier armored vehicle deployments providing maximum structural protection for diplomatic personnel.',
+    features: ['Armored Vehicles', 'GPS Tactical Tracking', 'Secure Communications'],
+    category: 'Fleet'
   },
   {
     icon: Users,
-    title: 'Professional Chauffeurs',
-    description: 'Highly trained, security-cleared drivers with extensive knowledge of diplomatic protocols.',
-    features: ['Background Checked', 'Defensive Driving', 'Protocol Trained'],
-    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663564530652/BYj5ACauk9YBxqUms6NPLg/professional-driver-ZpepnmQwWN77QJR5nqTKEB.webp',
+    title: 'Elite Security Drivers',
+    description: 'Vetted security-cleared personnel trained in defensive driving and international diplomatic protocols.',
+    features: ['Vetted Personnel', 'Protocol Integration', 'Tactical Response'],
+    category: 'Personnel'
   },
   {
     icon: MapPin,
-    title: 'Route Security',
-    description: 'Advanced route planning and real-time monitoring ensuring safe, efficient transportation.',
-    features: ['Threat Assessment', 'Alternative Routes', 'Secure Corridors'],
-    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663564530652/BYj5ACauk9YBxqUms6NPLg/command-center-b2R7TvLJSYKRngBH3y2NPM.webp',
+    title: 'Strategic Route Security',
+    description: 'Advanced tactical planning and real-time monitoring ensuring secure movement across high-risk corridors.',
+    features: ['Threat Assessment', 'Dynamic Routing', 'Secure Corridors'],
+    category: 'Intelligence'
   },
   {
     icon: Radio,
-    title: 'Convoy Operations',
-    description: 'Coordinated multi-vehicle movements for high-profile diplomatic missions and events.',
-    features: ['Security Escorts', 'Communications Suite', 'Tactical Coordination'],
-    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663564530652/BYj5ACauk9YBxqUms6NPLg/convoy-operations-JGboBHTkTwd6JEDB2pJSwv.webp',
+    title: 'Convoy Tactical Support',
+    description: 'Coordinated multi-vehicle movements for high-profile missions and state delegation requirements.',
+    features: ['Security Escort Teams', 'Encrypted Comms', 'Tactical Coordination'],
+    category: 'Tactical'
   },
   {
     icon: Clock,
-    title: '24/7 Availability',
-    description: 'Round-the-clock transportation services for emergency and scheduled diplomatic needs.',
-    features: ['Immediate Response', 'Global Coverage', 'Always Ready'],
-    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663564530652/BYj5ACauk9YBxqUms6NPLg/service-security-team-dZDz2cixNiQpX5cNTnqREN.webp',
+    title: '24/7 Mission Readiness',
+    description: 'Constant operational availability for immediate deployment in emergency or scheduled diplomatic contexts.',
+    features: ['Rapid Response Desk', 'Global Support Network', 'Operational Readiness'],
+    category: 'Operations'
   },
   {
     icon: Smartphone,
-    title: 'Mobile Command Center',
-    description: 'Advanced mobile platforms equipped with secure communications and coordination capabilities.',
-    features: ['Secure Comms', 'Real-time Intel', 'Crisis Management'],
-    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663564530652/BYj5ACauk9YBxqUms6NPLg/command-center-b2R7TvLJSYKRngBH3y2NPM.webp',
+    title: 'Mobile Operations Command',
+    description: 'Integrated mobile command platforms equipped with secure intelligence and crisis management suites.',
+    features: [ 'Real-time Intel', 'Crisis Management'],
+    category: 'Technology'
   },
 ];
 
-const VEHICLE_TYPES = [
-  { type: 'Executive Sedans', protection: 'B4-B6', capacity: '3-4 passengers' },
-  { type: 'Armored SUVs', protection: 'B6-B7', capacity: '5-7 passengers' },
-  { type: 'Luxury Vans', protection: 'B4-B6', capacity: '8-12 passengers' },
-  { type: 'Mobile Command', protection: 'B7', capacity: '4-6 personnel' },
+const STATS = [
+  { icon: Globe, value: '50+', label: 'Sovereign Missions' },
+  { icon: ShieldCheck, value: '200+', label: 'Secure Assets' },
+  { icon: TrendingUp, value: '99.9%', label: 'Mission Reliability' },
+  { icon: Award, value: 'Zero', label: 'Security Breaches' },
 ];
 
-const FEATURES = [
-  'Multi-lingual Drivers',
-  'VIP Airport Services',
-  'Emergency Medical Support',
-  'Secure Parking',
-  'Event Transportation',
-  'Inter-city Transfers',
-  'Protocol Coordination',
-  'Fleet Maintenance',
+const FLEET_SPECS = [
+  { type: 'Executive Diplomatic Sedans', protection: 'B4-B6', capacity: '3-4 Personnel' },
+  { type: 'Armored Mission SUVs', protection: 'B6-B7', capacity: '5-7 Personnel' },
+  { type: 'Secure Delegation Vans', protection: 'B4-B6', capacity: '8-12 Personnel' },
+  { type: 'Mobile Tactical Command', protection: 'B7', capacity: '4-6 Officers' },
 ];
 
+export default function LogisticsTransport() {
+  const router = useRouter();
+  const [scrolled, setScrolled] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-// ============================================================================
-// ANIMATION VARIANTS - Premium easing curves and stagger patterns
-// ============================================================================
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const scaleIn = {
-  initial: { opacity: 0, scale: 0.95 },
-  animate: { opacity: 1, scale: 1 },
-  transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
-};
-
-// ============================================================================
-// SUBCOMPONENTS
-// ============================================================================
-
-
-
-/**
- * Hero Section
- * Premium headline, subheading, and icon with refined animations
- */
-function HeroSection() {
   return (
-    <section className="relative pt-32 pb-20 px-6 overflow-hidden">
-
-      {/* ================= BACKGROUND SYSTEM ================= */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/heroslide1.png"
-          alt="Transport background"
-          className="w-full h-full object-cover scale-105"
-        />
-
-        {/* overlay */}
-        <div className="absolute inset-0 bg-slate-950/75" />
-
-        {/* gradient depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-950/70 to-slate-950" />
-      </div>
-
-      {/* ================= CONTENT ================= */}
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <motion.div
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-center mb-20"
-        >
-          {/* Icon Badge */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 mb-8 relative shadow-lg shadow-blue-500/20"
-          >
-            <Car className="w-10 h-10 text-white" />
-
-            <motion.div
-              animate={{ x: [0, 6, 0] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -right-2 top-1/2 -translate-y-1/2 w-8 h-0.5 bg-orange-400 opacity-60"
-            />
-          </motion.div>
-
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-6xl md:text-7xl font-light text-white mb-6 leading-tight tracking-tight"
-          >
-            Transport{" "}
-            <span className="font-bold bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent">
-              Services
-            </span>
-          </motion.h1>
-
-          {/* Subheading */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light mb-8"
-          >
-            Secure, reliable, and professional transportation solutions ensuring the safe movement of diplomatic personnel with discretion, efficiency, and world-class service.
-          </motion.p>
-
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-/**
- * Stats Grid Component
- * Premium stat cards with hover effects and staggered animations
- */
-function StatsGrid() {
-  return (
-    <motion.div
-      initial="initial"
-      whileInView="animate"
-      viewport={{ once: true, margin: '-100px' }}
-      variants={staggerContainer}
-      className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
-    >
-      {STATS.map((stat) => (
-        <motion.div
-          key={stat.label}
-          variants={scaleIn}
-          className="group relative"
-        >
-          {/* Glow background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-orange-500 rounded-2xl blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-500" />
-
-          {/* Card */}
-          <div className="relative bg-white/[0.08] backdrop-blur-xl border border-white/15 rounded-2xl p-6 text-center hover:bg-white/[0.12] hover:border-blue-400/40 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-blue-500/10">
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 10 }}
-            >
-              <stat.icon className="w-8 h-8 text-orange-400 mx-auto mb-4" />
-            </motion.div>
-            <div className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">{stat.value}</div>
-            <div className="text-sm text-slate-400 font-medium">{stat.label}</div>
-          </div>
-        </motion.div>
-      ))}
-    </motion.div>
-  );
-}
-
-/**
- * Service Card Component
- * Premium interactive card with image zoom, glow, and depth effects
- */
-function ServiceCard({ service, index }: { service: typeof SERVICES[0]; index: number }) {
-  return (
-    <motion.div
-      initial={{ y: 30, opacity: 0 }}
-      whileInView={{ y: 0, opacity: 1 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ delay: index * 0.08, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="group h-full"
-    >
-      <motion.div
-        whileHover={{ y: -8, transition: { duration: 0.3 } }}
-        className="relative h-full bg-gradient-to-br from-white/[0.08] to-white/[0.04] backdrop-blur-xl border border-white/15 rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-400/50 hover:shadow-xl hover:shadow-blue-500/10"
+    <div className="bg-white min-h-screen text-gray-900 font-sans">
+      
+      {/* Back Navigation Bar */}
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
+          scrolled ? "bg-white/95 backdrop-blur-md py-4 border-gray-200/50 shadow-lg" : "bg-transparent py-6 border-transparent"
+        }`}
       >
-        {/* Image Container */}
-        {service.image && (
-          <div className="relative h-48 overflow-hidden bg-slate-900">
-            <motion.img
-              src={service.image}
-              alt={service.title}
-              className="w-full h-full object-cover"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.6 }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
-          </div>
-        )}
-
-        {/* Animated glow background on hover */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-orange-500/5 rounded-2xl"
-        />
-
-        {/* Content */}
-        <div className="relative z-10 p-8">
-          {/* Icon Container */}
-          <motion.div
-            whileHover={{ scale: 1.15, rotate: -5 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 10 }}
-            className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 group-hover:shadow-blue-500/50 transition-shadow duration-300"
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+          <button 
+            onClick={() => router.back()}
+            className="flex items-center gap-2 text-[#0B3D91] font-bold hover:text-gray-700 transition-colors group"
           >
-            <service.icon className="w-7 h-7 text-white" />
-          </motion.div>
-
-          {/* Title */}
-          <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors duration-300">
-            {service.title}
-          </h3>
-
-          {/* Description */}
-          <p className="text-slate-300 leading-relaxed mb-6 text-sm font-light">
-            {service.description}
-          </p>
-
-          {/* Features List */}
-          <ul className="space-y-3">
-            {service.features.map((feature) => (
-              <motion.li
-                key={feature}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="flex items-start text-sm text-slate-400 group-hover:text-slate-300 transition-colors"
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-orange-400 mr-3 mt-1.5 flex-shrink-0" />
-                <span>{feature}</span>
-              </motion.li>
-            ))}
-          </ul>
+            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+            <span className="text-xs uppercase tracking-widest">Back to Services</span>
+          </button>
+          <div className="hidden md:block">
+            <span className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.4em]">Diplomatic Logistics & Transport</span>
+          </div>
+          <div className="w-24" />
         </div>
-      </motion.div>
-    </motion.div>
-  );
-}
+      </motion.nav>
 
-/**
- * Services Section
- * Grid of premium service cards with section title
- */
-function ServicesSection() {
-  return (
-    <section className="py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Comprehensive <span className="text-blue-400">Transport Solutions</span>
-          </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto font-light">
-            Our full suite of services designed to meet every diplomatic transportation need
-          </p>
-        </motion.div>
+      {/* Hero Section */}
+      <section className="relative h-[85vh] w-full overflow-hidden">
+        <Image
+          src="/transport.jpg"
+          alt="Diplomatic Transport & Logistics"
+          fill
+          className="object-cover opacity-95"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black" />
+        
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 max-w-5xl mx-auto">
+          <motion.span 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-[#0B3D91] font-bold text-xs tracking-[0.4em] uppercase mb-6 drop-shadow-lg"
+          >
+            Logistics & Transport
+          </motion.span>
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-white text-3xl md:text-8xl font-serif font-bold  leading-tight drop-shadow-2xl"
+          >
+           
+            <span className="text-[#B8860B]">Transport Solutions</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-white max-w-2xl text-lg md:text-xl mb-8 font-medium leading-relaxed drop-shadow-lg"
+          >
+            Elite, high-security transportation services engineered for the safe movement 
+            of diplomatic personnel, ensuring discretion, efficiency, and unwavering protection.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <a
+              href="#services"
+              className="bg-[#0B3D91] text-white px-10 py-5 rounded-2xl font-bold flex items-center gap-3 hover:scale-105 hover:shadow-2xl hover:shadow-[#0B3D91]/30 transition-all"
+            >
+              Explore Services <ArrowRight size={20} />
+            </a>
+          </motion.div>
+        </div>
+      </section>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {SERVICES.map((service, index) => (
-            <ServiceCard key={service.title} service={service} index={index} />
+      {/* Stats Grid */}
+      <section className="relative z-20 -mt-5 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+          {STATS.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 + index * 0.1 }}
+              className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 text-center group hover:border-[#0B3D91] transition-all"
+            >
+              <stat.icon className="w-8 h-8 text-[#B8860B] mx-auto mb-4 group-hover:scale-110 transition-transform" />
+              <div className="text-3xl font-bold text-[#0B3D91] mb-1">{stat.value}</div>
+              <div className="text-xs font-bold text-gray-400 uppercase tracking-widest">{stat.label}</div>
+            </motion.div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-/**
- * Vehicle Fleet Component
- * Premium vehicle type cards with specs
- */
-function VehicleFleet() {
-  return (
-    <section className="py-24 px-6 bg-white/[0.02]">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Our <span className="text-blue-400">Fleet</span>
-          </h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto font-light">
-            A diverse range of armored vehicles tailored to different security requirements and group sizes
-          </p>
-        </motion.div>
-
-        {/* Vehicle Grid */}
-        <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={staggerContainer}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {VEHICLE_TYPES.map((vehicle) => (
-            <motion.div
-              key={vehicle.type}
-              variants={scaleIn}
-              className="group relative"
-            >
-              {/* Glow background */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-orange-500 rounded-xl blur-lg opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-
-              {/* Card */}
-              <div className="relative bg-gradient-to-br from-white/[0.08] to-white/[0.04] backdrop-blur-xl border border-white/15 rounded-xl p-6 hover:border-blue-400/50 hover:bg-white/[0.12] transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/10">
-                <Gauge className="w-10 h-10 text-orange-400 mb-4 group-hover:scale-110 transition-transform duration-300" />
-                <h3 className="text-lg font-bold text-white mb-4">{vehicle.type}</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center text-slate-300 group-hover:text-slate-200 transition-colors">
-                    <Shield className="w-4 h-4 text-orange-400 mr-3 flex-shrink-0" />
-                    <span className="font-medium">{vehicle.protection}</span>
-                  </div>
-                  <div className="flex items-center text-slate-300 group-hover:text-slate-200 transition-colors">
-                    <Users className="w-4 h-4 text-orange-400 mr-3 flex-shrink-0" />
-                    <span className="font-medium">{vehicle.capacity}</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-/**
- * Features Section
- * Two-column layout with features grid and highlighted callout
- */
-function FeaturesSection() {
-  return (
-    <section className="py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left Column - Content */}
-          <motion.div
-            initial={{ x: -40, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Service <span className="text-blue-400">Excellence</span>
-            </h2>
-            <p className="text-lg text-slate-300 mb-8 leading-relaxed font-light">
-              Our transport services combine advanced security measures with five-star hospitality, ensuring diplomatic personnel travel safely and comfortably.
+      {/* Services Grid */}
+      <section id="services" className="py-32 px-6 relative bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-24">
+            <h2 className="text-4xl md:text-6xl font-serif font-bold mb-6 text-gray-900">Integrated Logistics</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              Strategic protection and secure movement engineered for the unique 
+              requirements of international diplomatic missions.
             </p>
+          </div>
 
-            {/* Highlighted Callout */}
-            <motion.div
-              whileHover={{ borderColor: 'rgba(59, 130, 246, 0.5)', backgroundColor: 'rgba(59, 130, 246, 0.08)' }}
-              transition={{ duration: 0.3 }}
-              className="bg-blue-900/10 border border-blue-700/30 rounded-xl p-6 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300"
-            >
-              <Navigation className="w-6 h-6 text-blue-400 mb-3" />
-              <h4 className="text-white font-semibold mb-2">Advanced Route Planning</h4>
-              <p className="text-slate-300 text-sm leading-relaxed font-light">
-                Our operations center monitors traffic, weather, and security conditions in real-time, dynamically adjusting routes to ensure optimal safety and efficiency.
-              </p>
-            </motion.div>
-          </motion.div>
-
-          {/* Right Column - Features Grid */}
-          <motion.div
-            initial={{ x: 40, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="grid grid-cols-2 gap-4"
-          >
-            {FEATURES.map((feature, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {SERVICES.map((service, index) => (
               <motion.div
-                key={feature}
-                initial={{ scale: 0.9, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.05, duration: 0.5 }}
-                className="group relative"
+                transition={{ delay: index * 0.1 }}
+                className="group relative overflow-hidden rounded-[2rem] border border-gray-200 bg-white p-8 hover:shadow-2xl transition-all duration-500"
               >
-                {/* Glow on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-orange-500/0 group-hover:from-blue-500/10 group-hover:to-orange-500/10 rounded-lg transition-all duration-300" />
-
-                {/* Card */}
-                <div className="relative bg-white/[0.05] backdrop-blur-sm border border-white/10 rounded-lg p-4 hover:bg-white/[0.08] hover:border-blue-400/30 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/5">
-                  <CheckCircle2 className="w-5 h-5 text-orange-400 mb-2 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="text-sm text-slate-200 font-medium">{feature}</span>
+                <div className="w-14 h-14 rounded-2xl bg-[#0B3D91]/5 flex items-center justify-center mb-8 group-hover:bg-[#0B3D91] transition-colors duration-500">
+                  <service.icon className="w-7 h-7 text-[#0B3D91] group-hover:text-white" />
                 </div>
+                <div className="text-[#B8860B] text-[10px] font-bold uppercase tracking-widest mb-4">{service.category}</div>
+                <h3 className="text-2xl font-serif font-bold mb-4 text-gray-900 group-hover:text-[#0B3D91] transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed mb-8">
+                  {service.description}
+                </p>
+                <ul className="space-y-3 mb-8">
+                  {service.features.map((feature, fIndex) => (
+                    <li key={fIndex} className="flex items-center gap-3 text-xs font-bold text-gray-500">
+                      <CheckCircle2 className="w-4 h-4 text-[#0B3D91]" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <button className="flex items-center gap-2 text-[#0B3D91] text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-4 transition-all">
+                  Mission Briefing <ArrowRight className="w-4 h-4" />
+                </button>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Fleet Specifications */}
+      <section className="py-32 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-gray-900">Strategic Fleet</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              Advanced vehicle specifications engineered for diplomatic protection and mission success.
+            </p>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-3xl border border-gray-200 overflow-hidden shadow-xl"
+          >
+            <div className="p-8 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
+              <h3 className="text-2xl font-serif font-bold text-gray-900 flex items-center gap-4">
+                <ShieldCheck className="w-7 h-7 text-[#0B3D91]" />
+                Fleet Specifications
+              </h3>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="border-b border-gray-200 bg-gray-50">
+                    <th className="px-8 py-5 text-[#0B3D91] text-xs font-bold uppercase tracking-widest">Vehicle Configuration</th>
+                    <th className="px-8 py-5 text-[#0B3D91] text-xs font-bold uppercase tracking-widest">Protection Level</th>
+                    <th className="px-8 py-5 text-[#0B3D91] text-xs font-bold uppercase tracking-widest">Capacity</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {FLEET_SPECS.map((spec, i) => (
+                    <tr key={i} className="hover:bg-gray-50 transition-colors group">
+                      <td className="px-8 py-5 text-gray-900 font-bold text-sm group-hover:text-[#0B3D91] transition-colors">{spec.type}</td>
+                      <td className="px-8 py-5 text-gray-600 font-medium text-sm">
+                        <span className="px-3 py-1 bg-[#0B3D91]/10 rounded-lg border border-[#0B3D91]/20 text-[#0B3D91] text-[10px] font-bold">
+                          {spec.protection}
+                        </span>
+                      </td>
+                      <td className="px-8 py-5 text-gray-600 font-medium text-sm">{spec.capacity}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </motion.div>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-/**
- * CTA Section
- * High-conversion call-to-action banner with animated accents
- */
-function CTASection() {
-  return (
-    <section className="py-32 px-6">
-      <div className="max-w-4xl mx-auto">
+      {/* CTA Section */}
+      <section className="py-40 px-6 text-center relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
+        <div className="absolute -bottom-48 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#0B3D91]/5 rounded-full blur-[160px]" />
+        
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="relative bg-gradient-to-r from-blue-600 via-blue-500 to-navy-700 rounded-3xl p-12 md:p-16 text-center overflow-hidden shadow-2xl shadow-blue-500/20"
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto relative z-10"
         >
-          {/* Animated top accent line */}
-          <motion.div
-            animate={{ x: ['-100%', '100%'] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-            className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-          />
+          <Zap className="w-12 h-12 text-[#B8860B] mx-auto mb-6" />
+          <h2 className="text-5xl md:text-7xl font-serif font-bold mb-8 text-gray-900">
+            Require Immediate <br />
+            <span className="text-[#0B3D91]">Tactical Transport?</span>
+          </h2>
+          <p className="text-gray-600 mb-12 text-xl max-w-2xl mx-auto leading-relaxed">
+            Our strategic operations desk is available 24/7 to facilitate emergency deployments 
+            and secure delegation movement across international territories.
+          </p>
 
-          {/* Animated bottom accent line */}
-          <motion.div
-            animate={{ x: ['-100%', '100%'] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'linear', delay: 1 }}
-            className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-          />
-
-          {/* Content */}
-          <div className="relative z-10">
-            {/* Icon */}
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 10 }}
-              className="inline-block mb-6"
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <button
+              onClick={() => router.push('/#contact')}
+              className="w-full sm:w-auto bg-[#0B3D91] text-white px-12 py-5 rounded-2xl font-bold hover:scale-105 hover:shadow-2xl hover:shadow-[#0B3D91]/30 transition-all flex items-center justify-center gap-3"
             >
-              <Headphones className="w-16 h-16 text-white" />
-            </motion.div>
-
-            {/* Headline */}
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-              Book Your Transport
-            </h2>
-
-            {/* Description */}
-            <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto leading-relaxed font-light">
-              Experience the difference of professional diplomatic transportation. Our team is ready to coordinate secure, reliable transport for your mission.
-            </p>
-
-            {/* CTA Button */}
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(59, 130, 246, 0.3)' }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg hover:bg-slate-50 transition-colors shadow-xl inline-flex items-center space-x-2 group"
+              Contact Operations Desk <ArrowRight size={20} />
+            </button>
+            <button
+              onClick={() => router.back()}
+              className="w-full sm:w-auto bg-gray-100 text-gray-900 border border-gray-300 px-12 py-5 rounded-2xl font-bold hover:bg-gray-200 transition-all"
             >
-              <a href="/#contact" className="text-blue-600 hover:text-blue-700">
-                Request Quote
-              </a>
-              <motion.div
-                whileHover={{ x: 4 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 10 }}
-              >
-                <ArrowRight className="w-5 h-5 group-hover:text-blue-600 transition-colors" />
-              </motion.div>
-            </motion.button>
+              View Other Services
+            </button>
           </div>
         </motion.div>
-      </div>
-    </section>
-  );
-}
-
-/**
- * Background Elements
- * Animated gradient orbs and subtle patterns for depth
- */
-function BackgroundElements() {
-  return (
-    <>
-      {/* Road pattern background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-[0.015]">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              repeating-linear-gradient(90deg, transparent, transparent 45px, rgba(16, 185, 129, 0.5) 45px, rgba(16, 185, 129, 0.5) 50px, transparent 50px, transparent 95px, rgba(16, 185, 129, 0.5) 95px, rgba(16, 185, 129, 0.5) 100px),
-              repeating-linear-gradient(0deg, transparent, transparent 45px, rgba(16, 185, 129, 0.5) 45px, rgba(16, 185, 129, 0.5) 50px, transparent 50px, transparent 95px, rgba(16, 185, 129, 0.5) 95px, rgba(16, 185, 129, 0.5) 100px)
-            `,
-            backgroundSize: '100px 100px',
-          }}
-        />
-      </div>
-
-      {/* Animated gradient orbs */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.2, 1],
-            opacity: [0.04, 0.08, 0.04],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            x: [0, -100, 0],
-            y: [0, 50, 0],
-            scale: [1, 1.3, 1],
-            opacity: [0.03, 0.07, 0.03],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-          className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-orange-500 rounded-full blur-3xl"
-        />
-      </div>
-    </>
-  );
-}
-
-// ============================================================================
-// MAIN COMPONENT
-// ============================================================================
-
-export default function Home() {
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 overflow-hidden">
-      {/* <BackgroundElements /> */}
-
-      <div className="relative">
-        <HeroSection />
-        <div className="max-w-7xl mx-auto px-6">
-          <StatsGrid />
-        </div>
-        <ServicesSection />
-        <VehicleFleet />
-        <FeaturesSection />
-        <CTASection />
-      </div>
+      </section>
+      <ContactSection />
+      <Footer />
+      
     </div>
   );
 }
