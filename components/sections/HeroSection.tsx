@@ -15,10 +15,9 @@ const BRAND = {
 } as const;
 
 const SERVICES: { icon: LucideIcon; label: string }[] = [
-  { icon: Shield,    label: "Security"   },
-  { icon: Truck,     label: "Logistics"  },
+  { icon: Truck,     label: "Transport"  },
   { icon: Globe,     label: "Global Reach"      },
-  { icon: Handshake, label: "Partnerships" },
+  { icon: Handshake, label: "Trade Solutions" },
 ];
 
 // ─── Sub-components ───────────────────────────────────────────────────────────

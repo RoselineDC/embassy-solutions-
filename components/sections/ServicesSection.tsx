@@ -19,22 +19,22 @@ const services = [
     path: "/services/construction",
     features: ["Chancery Renovation", "Structural Modernization", "Secure Facility Build"]
   },
-  {
-    icon: Lock,
-    title: "Security & Intelligence",
-    desc: "Advanced protective solutions including high-tier CCTV integration, alarm systems, and automated access control, ensuring the absolute sanctity of sovereign territory.",
-    image: "https://images.unsplash.com/photo-1562813733-b31f71025d54?w=800&q=80",
-    category: "security",
-    path: "/services/security",
+  // {
+  //   icon: Lock,
+  //   title: "Security & Intelligence",
+  //   desc: "Advanced protective solutions including high-tier CCTV integration, alarm systems, and automated access control, ensuring the absolute sanctity of sovereign territory.",
+  //   image: "https://images.unsplash.com/photo-1562813733-b31f71025d54?w=800&q=80",
+  //   category: "security",
+  //   path: "/services/security",
 
-    features: ["CCTV & Surveillance", "Access Control Systems", "Perimeter Protection"]
-  },
+  //   features: ["CCTV & Surveillance", "Access Control Systems", "Perimeter Protection"]
+  // },
   {
     icon: Truck,
     title: "Diplomatic Logistics",
     desc: "Elite chauffeur services and premium vehicle leasing for official delegations. We provide highly trained relief drivers and secure transport for high-level events.",
     image: "https://images.unsplash.com/photo-1449965408869-ebd13bc0c322?w=800&q=80",
-    category: "logistics",
+    category: "transport",
     path: "/services/logistics",
 
     features: ["Official Delegations", "Chauffeur Services", "Secure Fleet Leasing"]
@@ -53,7 +53,8 @@ const services = [
       "HVAC Systems",
       "Plumbing Services",
       "Security Systems",
-      "Cleaning & Sanitation"
+      "Cleaning & Sanitation",
+      "Handyman Services"
     ],
     subServices: [
       {
@@ -85,26 +86,32 @@ const services = [
         title: "Cleaning Services",
         desc: "Daily cleaning, deep cleaning, sanitation",
         image: "https://images.unsplash.com/photo-1581578017420-ec0f8c1b4b2c?w=800&q=80"
+      },
+      {
+        title: "Handyman Services",
+        desc: "General repairs, furniture assembly, minor renovations",
+        image: "https://images.unsplash.com/photo-1581092334317-9c8b1c0d5e9b?w=800&q=80"
       }
     ]
   },
-  {
-    icon: Briefcase,
-    title: "Strategic Consulting",
-    desc: "Trade facilitation and bilateral business opportunity identification. We serve as a strategic bridge between nations to foster economic growth and cooperation.",
-    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&q=80",
-    category: "consulting",
-    path: "/services/consulting",
-    features: ["Trade Facilitation", "Bilateral Opportunities", "Strategic Networking"]
-  },
+  // {
+  //   icon: Briefcase,
+  //   title: "Strategic Consulting",
+  //   desc: "Trade facilitation and bilateral business opportunity identification. We serve as a strategic bridge between nations to foster economic growth and cooperation.",
+  //   image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&q=80",
+  //   category: "consulting",
+  //   path: "/services/consulting",
+  //   features: ["Trade Facilitation", "Bilateral Opportunities", "Strategic Networking"]
+  // },
 ];
 
 const categories = [
   { id: "all", label: "All Operations" },
   { id: "infrastructure", label: "Infrastructure" },
-  { id: "security", label: "Security" },
-  { id: "logistics", label: "Logistics" },
+  // { id: "security", label: "Security" },
+  // { id: "logistics", label: "Logistics" },
   { id: "maintenance", label: "Facility Management" },
+  { id: "transport", label: "Transportation" },
 ];
 
 export default function ServicesSection() {

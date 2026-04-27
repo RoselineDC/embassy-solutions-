@@ -25,14 +25,14 @@ const services = [
     link: '/services/maintenance',
     color: 'from-amber-500 to-yellow-600'
   },
-  {
-    icon: Cpu,
-    title: 'Technology Solutions',
-    description: 'Advanced technology integration for secure, efficient, and modern diplomatic operations.',
-    features: ['Smart Building Systems', 'Cybersecurity', 'Network Infrastructure'],
-    link: '/services/technology',
-    color: 'from-blue-500 to-cyan-600'
-  },
+  // {
+  //   icon: Cpu,
+  //   title: 'Technology Solutions',
+  //   description: 'Advanced technology integration for secure, efficient, and modern diplomatic operations.',
+  //   features: ['Smart Building Systems', 'Cybersecurity', 'Network Infrastructure'],
+  //   link: '/services/technology',
+  //   color: 'from-blue-500 to-cyan-600'
+  // },
   {
     icon: Building2,
     title: 'Construction Services',
@@ -41,14 +41,14 @@ const services = [
     link: '/services/construction',
     color: 'from-slate-600 to-slate-800'
   },
-  {
-    icon: Lock,
-    title: 'Security Services',
-    description: 'Comprehensive security solutions protecting personnel, assets, and sensitive information.',
-    features: ['Physical Security', 'Access Control', 'Threat Assessment'],
-    link: '/services/security',
-    color: 'from-red-600 to-rose-800'
-  },
+  // {
+  //   icon: Lock,
+  //   title: 'Security Services',
+  //   description: 'Comprehensive security solutions protecting personnel, assets, and sensitive information.',
+  //   features: ['Physical Security', 'Access Control', 'Threat Assessment'],
+  //   link: '/services/security',
+  //   color: 'from-red-600 to-rose-800'
+  // },
   {
     icon: Car,
     title: 'Transport Services',

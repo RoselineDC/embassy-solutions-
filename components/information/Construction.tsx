@@ -23,13 +23,14 @@ const constructionServices = [
     icon: Hammer,
     category: 'Renovation'
   },
-  {
-    title: 'High-Tier Security Integration',
-    desc: 'Specialized structural reinforcement and advanced security infrastructure for sovereign territory.',
-    image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&q=80',
-    icon: ShieldCheck,
-    category: 'Security'
-  },
+  
+  // {
+  //   title: 'High-Tier Security Integration',
+  //   desc: 'Specialized structural reinforcement and advanced security infrastructure for sovereign territory.',
+  //   image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&q=80',
+  //   icon: ShieldCheck,
+  //   category: 'Security'
+  // },
   {
     title: 'Diplomatic Interior Fit-Out',
     desc: 'Premium interior design and fit-out services for official residences and diplomatic offices.',

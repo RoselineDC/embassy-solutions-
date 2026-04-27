@@ -26,30 +26,30 @@ const galleryItems = [
     desc: "Strategic landscape design for a diplomatic residency, balancing aesthetic prestige with high-level perimeter security requirements.",
     icon: Globe
   },
-  {
-    src: "https://images.unsplash.com/photo-1562813733-b31f71025d54?w=1200&q=80",
-    title: "Compound Surveillance Integration",
-    category: "Security",
-    desc: "Deployment of an enterprise-grade CCTV and biometric access control network across a multi-building diplomatic compound.",
-    icon: Shield
-  },
-  {
-    src: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=1200&q=80",
-    title: "Bilateral State Reception",
-    category: "Events",
-    desc: "Strategic event management and secure catering for a high-level bilateral state dinner hosting international delegations.",
-    icon: Globe
-  },
-  {
-    src: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80",
-    title: "Mission-Critical IT Infrastructure",
-    category: "Technology",
-    desc: "Establishment of a secure server environment and encrypted network infrastructure to support mission-critical diplomatic communications.",
-    icon: Shield
-  },
+  // {
+  //   src: "https://images.unsplash.com/photo-1562813733-b31f71025d54?w=1200&q=80",
+  //   title: "Compound Surveillance Integration",
+  //   category: "Security",
+  //   desc: "Deployment of an enterprise-grade CCTV and biometric access control network across a multi-building diplomatic compound.",
+  //   icon: Shield
+  // },
+  // {
+  //   src: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=1200&q=80",
+  //   title: "Bilateral State Reception",
+  //   category: "Events",
+  //   desc: "Strategic event management and secure catering for a high-level bilateral state dinner hosting international delegations.",
+  //   icon: Globe
+  // },
+  // {
+  //   src: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80",
+  //   title: "Mission-Critical IT Infrastructure",
+  //   category: "Technology",
+  //   desc: "Establishment of a secure server environment and encrypted network infrastructure to support mission-critical diplomatic communications.",
+  //   icon: Shield
+  // },
 ];
 
-const categories = ["All Operations", "Infrastructure", "Security", "Technology", "Mission Support", "Events"];
+const categories = ["All Operations", "Infrastructure", "Maintanance", "Transport"];
 
 export default function GallerySection() {
   const [activeCategory, setActiveCategory] = useState("All Operations");

@@ -16,7 +16,7 @@ const values = [
   },
   {
     icon: Users,
-    title: "Trusted Partnership",
+    title: "Trade Solutions",
     desc: "Building enduring relationships based on mutual respect, discretion, and absolute reliability.",
   },
   {

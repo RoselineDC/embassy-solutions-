@@ -21,7 +21,8 @@ import {
   ArrowRight,
   ShieldCheck,
   Globe,
-  Phone
+  Phone,
+  Armchair
 } from 'lucide-react';
 import ContactSection from '../sections/ContactSection';
 import Footer from '../Footer';
@@ -35,6 +36,13 @@ const SERVICES = [
     description: 'Comprehensive structural upkeep including repairs, painting, roofing, and flooring for diplomatic premises.',
     features: ['Structural Repairs', 'Painting & Finishing', 'Roofing & Flooring'],
     category: 'Structural',
+  },
+  {
+    title: 'Handyman & Maintenance',
+    desc: 'Ongoing maintenance and handyman services ensuring the operational integrity of diplomatic facilities.',
+    image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=800&q=80',
+    icon: Armchair,
+    category: 'Maintenance'
   },
   {
     icon: Zap,
@@ -83,6 +91,7 @@ const STATS = [
 const SCOPE_SPECS = [
   { area: 'Structural & Civil Works', frequency: 'Scheduled & Emergency', coverage: 'Full Premises' },
   { area: 'Electrical & Power Systems', frequency: 'Preventive Monthly', coverage: 'All Systems' },
+  { area: 'Handyman & Maintenance', frequency: 'Ongoing', coverage: 'All Facilities' },
   { area: 'HVAC & Climate Systems', frequency: 'Quarterly Servicing', coverage: 'Full Coverage' },
   { area: 'Plumbing & Water Systems', frequency: 'On-Demand & Preventive', coverage: 'All Facilities' },
   { area: 'Security Tech Systems', frequency: 'Weekly Inspection', coverage: 'Perimeter & Interior' },
