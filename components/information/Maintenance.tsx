@@ -38,10 +38,10 @@ const SERVICES = [
     category: 'Structural',
   },
   {
-    title: 'Handyman & Maintenance',
-    desc: 'Ongoing maintenance and handyman services ensuring the operational integrity of diplomatic facilities.',
-    image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=800&q=80',
     icon: Armchair,
+    title: 'Handyman & Maintenance',
+    description: 'Ongoing maintenance and handyman services ensuring the operational integrity of diplomatic facilities.',
+    features: ['General Repairs', 'Furniture Maintenance', 'Fixture Upkeep'],    
     category: 'Maintenance'
   },
   {
@@ -148,7 +148,7 @@ export default function MaintenancePage() {
           className="object-cover opacity-95"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-white" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/50 via-black/20 to-white" />
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 max-w-5xl mx-auto">
           <motion.span
@@ -215,7 +215,7 @@ export default function MaintenancePage() {
       </section>
 
       {/* ── Services Grid ── */}
-      <section id="services" className="py-32 px-6 relative bg-gradient-to-b from-white to-gray-50">
+      <section id="services" className="py-32 px-6 relative bg-linear-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-24">
             <span className="text-[#B8860B] text-xs font-bold uppercase tracking-[0.35em] mb-4 block">
@@ -238,12 +238,12 @@ export default function MaintenancePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative overflow-hidden rounded-[2rem] border border-gray-200 bg-white p-8
+                className="group relative overflow-hidden rounded-4xl border border-gray-200 bg-white p-8
                            hover:shadow-2xl transition-all duration-500"
               >
                 {/* Gold top border reveal on hover */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-[#B8860B] scale-x-0 group-hover:scale-x-100
-                                transition-transform duration-500 origin-left rounded-t-[2rem]" />
+                                transition-transform duration-500 origin-left rounded-t-4xl" />
 
                 <div className="w-14 h-14 rounded-2xl bg-[#0B3D91]/5 flex items-center justify-center mb-8
                                 group-hover:bg-[#0B3D91] transition-colors duration-500">
@@ -301,7 +301,7 @@ export default function MaintenancePage() {
             viewport={{ once: true }}
             className="bg-white rounded-3xl border border-gray-200 overflow-hidden shadow-xl"
           >
-            <div className="p-8 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
+            <div className="p-8 border-b border-gray-200 bg-linear-to-r from-gray-50 to-white">
               <h3 className="text-2xl font-serif font-bold text-gray-900 flex items-center gap-4">
                 <Wrench className="w-7 h-7 text-[#0B3D91]" />
                 Service Schedule Overview
@@ -339,8 +339,8 @@ export default function MaintenancePage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-40 px-6 text-center relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
-        <div className="absolute -bottom-48 left-1/2 -translate-x-1/2 w-[800px] h-[800px]
+      <section className="py-40 px-6 text-center relative overflow-hidden bg-linear-to-b from-white to-gray-50">
+        <div className="absolute -bottom-48 left-1/2 -translate-x-1/2 w-200 h-200
                         bg-[#0B3D91]/5 rounded-full blur-[160px]" />
 
         <motion.div
