@@ -142,13 +142,13 @@ export default function MaintenancePage() {
       {/* ── Hero ── */}
       <section className="relative h-[85vh] w-full overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1920&q=80&fit=crop"
+          src="/maintenance.jpeg"
           alt="Facility Maintenance Services"
           fill
           className="object-cover opacity-95"
           priority
         />
-        <div className="absolute inset-0 bg-linear-to-b from-black/50 via-black/20 to-white" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/50 via-black/20 to-black" />
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 max-w-5xl mx-auto">
           <motion.span

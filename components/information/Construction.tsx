@@ -10,45 +10,37 @@ import ContactSection from '../sections/ContactSection';
 
 const constructionServices = [
   {
-    title: 'Sovereign Chancery Construction',
-    desc: 'Bespoke construction of official chanceries adhering to stringent international security protocols.',
-    image: 'https://images.unsplash.com/photo-1494526585095-c41746248156?w=800&q=80',
+    title: 'Government Infrastructure Construction',
+    desc: 'Specialized construction of embassy facilities, government buildings, and secure compounds built to meet strict international standards and security requirements.',
+    image: '/school.jpeg',
     icon: Building2,
     category: 'Infrastructure'
   },
   {
-    title: 'Mission Modernization',
-    desc: 'Comprehensive structural renovation and technical modernization of existing diplomatic premises.',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+    title: 'Facility Renovation & Modernization',
+    desc: 'Upgrading and reinforcement of existing diplomatic and government structures to enhance security, functionality, and long-term operational resilience.',
+    image: '/houseReno.jpeg',
     icon: Hammer,
     category: 'Renovation'
   },
-  
-  // {
-  //   title: 'High-Tier Security Integration',
-  //   desc: 'Specialized structural reinforcement and advanced security infrastructure for sovereign territory.',
-  //   image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&q=80',
-  //   icon: ShieldCheck,
-  //   category: 'Security'
-  // },
   {
-    title: 'Diplomatic Interior Fit-Out',
-    desc: 'Premium interior design and fit-out services for official residences and diplomatic offices.',
-    image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=800&q=80',
-    icon: Armchair, // Note: Replacing with Armchair if available, else Ruler
-    category: 'Interiors'
+    title: 'CCTV & Surveillance Systems',
+    desc: 'Deployment of advanced CCTV and surveillance solutions with real-time monitoring, access control integration, and perimeter security for sensitive facilities.',
+    image: '/camera.jpeg',
+    icon: ShieldCheck,
+    category: 'Security'
   },
   {
-    title: 'Strategic Design-Build',
-    desc: 'Integrated architectural design and construction delivery for seamless project execution.',
-    image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&q=80',
+    title: 'Design & Build Solutions',
+    desc: 'Integrated architectural design and construction services tailored for secure government and diplomatic environments, ensuring efficiency and compliance.',
+    image: '/designFist.jpeg',
     icon: Ruler,
     category: 'Design'
   },
   {
-    title: 'Mission-Critical Delivery',
-    desc: 'Accountable project management and delivery ensuring operational continuity for the mission.',
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80',
+    title: 'Project Management & Delivery',
+    desc: 'End-to-end project oversight with strict adherence to timelines, budgets, and regulatory frameworks required for mission-critical government operations.',
+    image: '/criticalDelivery.jpeg',
     icon: HardHat,
     category: 'Project Management'
   },
@@ -66,17 +58,16 @@ export default function ConstructionPage() {
 
   return (
     <div className="bg-white min-h-screen text-gray-900 font-sans">
-      
+
       {/* Back Navigation Bar */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
-          scrolled ? "bg-white/95 backdrop-blur-md py-4 border-gray-200/50 shadow-lg" : "bg-transparent py-6 border-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${scrolled ? "bg-white/95 backdrop-blur-md py-4 border-gray-200/50 shadow-lg" : "bg-transparent py-6 border-transparent"
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <button 
+          <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-[#0B3D91] font-bold hover:text-gray-700 transition-colors group"
           >
@@ -100,16 +91,16 @@ export default function ConstructionPage() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-white" />
-        
+
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 max-w-5xl mx-auto">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-[#0B3D91] font-bold text-xs tracking-[0.4em] uppercase mb-6 drop-shadow-lg"
           >
             Sovereign Infrastructure
           </motion.span>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -117,13 +108,13 @@ export default function ConstructionPage() {
           >
             <span className="text-[#B8860B]">Diplomatic Excellence</span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             className="text-white max-w-2xl text-lg md:text-xl mb-12 font-medium leading-relaxed drop-shadow-lg"
           >
-            World-class construction solutions engineered for high-security, high-performance 
+            World-class construction solutions engineered for high-security, high-performance
             environments and the unique structural demands of sovereign missions.
           </motion.p>
           <motion.div
@@ -144,12 +135,12 @@ export default function ConstructionPage() {
       {/* Expertise Grid */}
       <section id="expertise" className="py-32 px-6 relative bg-gradient-to-b from-white to-gray-50">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-[#0B3D91] to-transparent" />
-        
+
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-24">
             <h2 className="text-4xl md:text-6xl font-serif font-bold mb-6 text-gray-900">Our Operational Domains</h2>
             <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              Specialized infrastructure services tailored to the rigorous standards 
+              Specialized infrastructure services tailored to the rigorous standards
               of international diplomatic organizations.
             </p>
           </div>
@@ -187,9 +178,9 @@ export default function ConstructionPage() {
                   <p className="text-gray-600 text-sm leading-relaxed mb-8">
                     {service.desc}
                   </p>
-                  <button className="flex items-center gap-2 text-[#0B3D91] text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-4 transition-all">
+                  {/* <button className="flex items-center gap-2 text-[#0B3D91] text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-4 transition-all">
                     Mission Briefing <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </button> */}
                 </div>
               </motion.div>
             ))}
@@ -200,9 +191,9 @@ export default function ConstructionPage() {
       {/* Quality Charter Section */}
       <section className="py-32 bg-gradient-to-b from-gray-50 to-white px-6 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
-        
+
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -210,11 +201,11 @@ export default function ConstructionPage() {
           >
             <Image
               src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1200&q=80"
-              alt="Architectural Precision"
+              alt="Secure Government Infrastructure"
               fill
               className="object-cover opacity-80"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#051a44]/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#051a44]/70 to-transparent" />
           </motion.div>
 
           <motion.div
@@ -222,25 +213,30 @@ export default function ConstructionPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-[#0B3D91] font-bold text-xs tracking-[0.4em] uppercase mb-6 block">The Quality Charter</span>
+            <span className="text-[#0B3D91] font-bold text-xs tracking-[0.4em] uppercase mb-6 block">
+              The Quality Charter
+            </span>
+
             <h2 className="text-4xl md:text-6xl font-serif font-bold mb-8 leading-tight text-gray-900">
               Precision. Security. <br />
               <span className="text-[#0B3D91]">Operational Integrity.</span>
             </h2>
+
             <p className="text-gray-600 mb-10 text-lg leading-relaxed font-medium">
-              We specialize in delivering secure and sustainable infrastructure for diplomatic 
-              and government institutions, ensuring every structural element meets the 
-              highest standards of sovereign safety.
+              We deliver secure, compliant, and high-performance infrastructure for
+              embassies, diplomatic missions, and government institutions. Every project
+              is executed with strict adherence to international standards, ensuring
+              operational continuity, security, and long-term resilience.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-6">
               {[
-                'Diplomatic-grade security standards',
-                'Sustainable & LEED-ready builds',
-                'Advanced structural engineering',
-                'Seamless mission delivery',
-                'Bilateral compliance expertise',
-                'Secure supply chain management'
+                'Diplomatic-grade security integration',
+                'Compliance with international building standards',
+                'Advanced surveillance & access control systems',
+                'Specialized renovation of sensitive facilities',
+                'End-to-end project accountability',
+                'Secure and vetted supply chain management'
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-4 group">
                   <div className="w-6 h-6 rounded-full bg-[#0B3D91]/10 flex items-center justify-center border border-[#0B3D91]/20 group-hover:bg-[#0B3D91] transition-all">
@@ -256,8 +252,7 @@ export default function ConstructionPage() {
 
       {/* CTA Section */}
       <section className="py-40 px-6 text-center relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
-        <div className="absolute -bottom-48 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#0B3D91]/5 rounded-full blur-[160px]" />
-        
+        <div className="absolute -bottom-48 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#0B3D91]/5 rounded-full blur-[160px] pointer-events-none" />
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -269,7 +264,7 @@ export default function ConstructionPage() {
             <span className="text-[#0B3D91]">Infrastructure Mission</span>
           </h2>
           <p className="text-gray-600 mb-12 text-xl max-w-2xl mx-auto leading-relaxed">
-            Partner with a team that delivers structural excellence and unwavering security 
+            Partner with a team that delivers structural excellence and unwavering security
             at every stage of the diplomatic construction lifecycle.
           </p>
 
@@ -284,13 +279,14 @@ export default function ConstructionPage() {
               onClick={() => router.back()}
               className="w-full sm:w-auto bg-gray-100 text-gray-900 border border-gray-300 px-12 py-5 rounded-2xl font-bold hover:bg-gray-200 transition-all"
             >
-              View Other Pillars
+              View Other Services
+
             </button>
           </div>
         </motion.div>
       </section>
       <ContactSection />
-<Footer />
+      <Footer />
     </div>
   );
 }

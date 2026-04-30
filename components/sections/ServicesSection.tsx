@@ -14,7 +14,7 @@ const services = [
     icon: Building2,
     title: "Mission Infrastructure",
     desc: "Bespoke construction and structural renovation of diplomatic premises. We adhere to stringent international security and quality standards to modernize your official chanceries.",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    image: "/infrastructure.jpeg",
     category: "infrastructure",
     path: "/services/construction",
     features: ["Chancery Renovation", "Structural Modernization", "Secure Facility Build"]
@@ -31,9 +31,9 @@ const services = [
   // },
   {
     icon: Truck,
-    title: "Diplomatic Logistics",
+    title: "Diplomatic Transportation",
     desc: "Elite chauffeur services and premium vehicle leasing for official delegations. We provide highly trained relief drivers and secure transport for high-level events.",
-    image: "https://images.unsplash.com/photo-1449965408869-ebd13bc0c322?w=800&q=80",
+    image: "/diplomaticTransport.jpeg",
     category: "transport",
     path: "/services/logistics",
 
@@ -43,7 +43,7 @@ const services = [
     icon: Wrench,
     title: "Maintenance Services",
     desc: "Comprehensive facility maintenance solutions ensuring operational excellence for diplomatic premises, including infrastructure upkeep, utilities, and sanitation.",
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
+    image: "/maintenance.jpeg",
     category: "maintenance",
     path: "/services/maintenance",
 

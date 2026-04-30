@@ -2,74 +2,130 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Maximize2, Building2, Shield, Globe, Briefcase } from "lucide-react";
+import { X, Maximize2, Building2, Shield, Globe, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryItems = [
   {
-    src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80",
-    title: "Embassy Chancery Modernization",
+    images: [
+  
+      "/school.jpeg",
+      "/school2.jpeg",
+      "/school3.jpeg",
+      "/school4.jpeg",
+      "/school5.jpeg",
+      "/construction1.jpeg",
+      "/school6.jpeg"
+    ],
+    title: "Diplomatic Facility Construction",
     category: "Infrastructure",
-    desc: "A comprehensive structural and technical overhaul of a 5,000 sqm diplomatic facility, integrating advanced security and modern administrative suites.",
+    desc: "End-to-end construction of embassy and government facilities with secure structural systems and mission-ready infrastructure delivery.",
     icon: Building2
   },
   {
-    src: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
-    title: "Executive Diplomatic Suites",
-    category: "Mission Support",
-    desc: "Premium interior fit-out for ambassadorial offices, featuring secure communication infrastructure and bespoke ceremonial furnishings.",
+    images: [
+      "/cupboars2.jpeg",
+      "/cupboards3.jpeg",
+      "/construction2.jpeg",
+      "/construction3.jpeg",
+    ],
+    title: "Building Maintenance & Refurbishment",
+    category: "Maintenance",
+    desc: "Ongoing maintenance and refurbishment of diplomatic offices and residences to ensure operational efficiency and structural integrity.",
     icon: Briefcase
   },
   {
-    src: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&q=80",
-    title: "Residency Perimeter Landscaping",
-    category: "Facility Management",
-    desc: "Strategic landscape design for a diplomatic residency, balancing aesthetic prestige with high-level perimeter security requirements.",
+    images: [
+      "/heroslide1.png",
+      "/transport.jpg",
+    ],
+    title: "Secure Transport & Site Logistics",
+    category: "Transport",
+    desc: "Coordinated transport planning and logistics management for diplomatic sites, ensuring secure access and operational movement.",
     icon: Globe
   },
-  // {
-  //   src: "https://images.unsplash.com/photo-1562813733-b31f71025d54?w=1200&q=80",
-  //   title: "Compound Surveillance Integration",
-  //   category: "Security",
-  //   desc: "Deployment of an enterprise-grade CCTV and biometric access control network across a multi-building diplomatic compound.",
-  //   icon: Shield
-  // },
-  // {
-  //   src: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=1200&q=80",
-  //   title: "Bilateral State Reception",
-  //   category: "Events",
-  //   desc: "Strategic event management and secure catering for a high-level bilateral state dinner hosting international delegations.",
-  //   icon: Globe
-  // },
-  // {
-  //   src: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80",
-  //   title: "Mission-Critical IT Infrastructure",
-  //   category: "Technology",
-  //   desc: "Establishment of a secure server environment and encrypted network infrastructure to support mission-critical diplomatic communications.",
-  //   icon: Shield
-  // },
+  {
+    images: [
+      "/camera.jpeg",
+      "/6.png",
+    ],
+    title: "Government CCTV Surveillance Systems",
+    category: "Infrastructure",
+    desc: "Design and installation of integrated CCTV surveillance systems across government and embassy compounds for enhanced perimeter security.",
+    icon: Shield
+  },
+  {
+    images: [
+      "/roof1.jpeg",
+      "/roof2.jpeg",
+      "/roof3.jpeg",
+      "/roof4.jpeg",
+      "/roof5.jpeg",
+      "/roof6.jpeg",
+      "/roof7.jpeg",
+
+
+    ],
+    title: "Diplomatic Facility Maintenance Operations",
+    category: "Maintenance",
+    desc: "Comprehensive maintenance operations for diplomatic facilities, including structural repairs, system upgrades, and preventive care to ensure mission readiness.",
+    icon: Globe
+  },
+  {
+    images: [
+   "/track1.jpeg",
+    ],
+    title: "Secure Communications & Network Systems",
+    category: "Transport",
+    desc: "Deployment of secure communication and travel monitoring supporting diplomatic transport coordination and mission operations.",
+    icon: Shield
+  },
 ];
 
-const categories = ["All Operations", "Infrastructure", "Maintanance", "Transport"];
+const categories = ["All Operations", "Infrastructure", "Maintenance", "Transport"];
 
 export default function GallerySection() {
   const [activeCategory, setActiveCategory] = useState("All Operations");
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [slideIndex, setSlideIndex] = useState(0);
 
   const filtered = activeCategory === "All Operations"
     ? galleryItems
     : galleryItems.filter((item) => item.category === activeCategory);
 
+  const openLightbox = (itemIndex: number) => {
+    setSelectedImage(itemIndex);
+    setSlideIndex(0);
+  };
+
+  const closeLightbox = () => {
+    setSelectedImage(null);
+    setSlideIndex(0);
+  };
+
+  const goNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (selectedImage === null) return;
+    const total = galleryItems[selectedImage].images.length;
+    setSlideIndex((prev) => (prev + 1) % total);
+  };
+
+  const goPrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (selectedImage === null) return;
+    const total = galleryItems[selectedImage].images.length;
+    setSlideIndex((prev) => (prev - 1 + total) % total);
+  };
+
   return (
     <section id="gallery" className="relative py-24 sm:py-32 bg-white overflow-hidden">
-      {/* Decorative Elements */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#B8860B]/30 to-transparent" />
       <div className="absolute -right-48 top-0 w-[600px] h-[600px] bg-[#0B3D91]/5 rounded-full blur-[120px]" />
       <div className="absolute -left-48 bottom-0 w-[600px] h-[600px] bg-[#B8860B]/5 rounded-full blur-[120px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header Section */}
+        {/* Header */}
         <div className="text-center mb-16">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -77,7 +133,7 @@ export default function GallerySection() {
           >
             Mission Portfolio
           </motion.span>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -86,19 +142,19 @@ export default function GallerySection() {
           >
             Excellence in Action
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             viewport={{ once: true }}
             className="text-[#0B3D91]/70 max-w-2xl mx-auto text-lg font-medium leading-relaxed"
           >
-            A visual record of our commitment to delivering high-precision support 
+            A visual record of our commitment to delivering high-precision support
             and operational security for sovereign missions globally.
           </motion.p>
         </div>
 
-        {/* Professional Filter System */}
+        {/* Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((cat) => (
             <motion.button
@@ -117,7 +173,7 @@ export default function GallerySection() {
           ))}
         </div>
 
-        {/* Prestigious Gallery Grid */}
+        {/* Gallery Grid */}
         <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
             {filtered.map((item, i) => (
@@ -132,26 +188,26 @@ export default function GallerySection() {
                 <motion.div
                   className="group relative rounded-2xl overflow-hidden cursor-pointer bg-white shadow-xl shadow-[#0B3D91]/5 border border-[#0B3D91]/10 hover:border-[#B8860B]/50 transition-all duration-500"
                   whileHover={{ y: -8 }}
-                  onClick={() => setSelectedImage(galleryItems.indexOf(item))}
+                  onClick={() => openLightbox(galleryItems.indexOf(item))}
                 >
-                  {/* Image Container */}
                   <div className="relative h-72 overflow-hidden">
                     <img
-                      src={item.src}
+                      src={item.images[0]}
                       alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
-                    {/* Sophisticated Overlay */}
+                    {/* Image count badge */}
+                    {item.images.length > 1 && (
+                      <div className="absolute top-4 right-4 px-2.5 py-1 bg-black/50 backdrop-blur-sm rounded-full text-white text-[10px] font-bold tracking-wider">
+                        1 / {item.images.length}
+                      </div>
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0B3D91] via-[#0B3D91]/20 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-500" />
-                    
-                    {/* View Icon */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center">
                         <Maximize2 className="w-6 h-6 text-white" />
                       </div>
                     </div>
-
-                    {/* Bottom Info Bar */}
                     <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                       <div className="flex items-center gap-2 mb-2">
                         <item.icon className="w-4 h-4 text-[#B8860B]" />
@@ -167,7 +223,7 @@ export default function GallerySection() {
         </motion.div>
       </div>
 
-      {/* Diplomatic Lightbox Experience */}
+      {/* Lightbox with Slideshow */}
       <AnimatePresence>
         {selectedImage !== null && (
           <motion.div
@@ -175,12 +231,12 @@ export default function GallerySection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)}
+            onClick={closeLightbox}
           >
             {/* Close Button */}
             <motion.button
-              className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors border border-white/20"
-              onClick={() => setSelectedImage(null)}
+              className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors border border-white/20 z-10"
+              onClick={closeLightbox}
               whileHover={{ rotate: 90 }}
             >
               <X className="w-6 h-6" />
@@ -193,18 +249,69 @@ export default function GallerySection() {
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Main Image */}
-              <div className="lg:w-2/3 relative h-[400px] lg:h-[600px]">
-                <img
-                  src={galleryItems[selectedImage].src}
-                  alt={galleryItems[selectedImage].title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-6 left-6 px-4 py-2 bg-[#0B3D91]/90 backdrop-blur-md border border-white/20 rounded-full">
+              {/* Slideshow Panel */}
+              <div className="lg:w-2/3 relative h-[400px] lg:h-[600px] bg-black overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={slideIndex}
+                    src={galleryItems[selectedImage].images[slideIndex]}
+                    alt={`${galleryItems[selectedImage].title} ${slideIndex + 1}`}
+                    className="w-full h-full object-cover"
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -40 }}
+                    transition={{ duration: 0.35 }}
+                  />
+                </AnimatePresence>
+
+                {/* Record Badge */}
+                <div className="absolute top-6 left-6 px-4 py-2 bg-[#0B3D91]/90 backdrop-blur-md border border-white/20 rounded-full z-10">
                   <span className="text-white text-[10px] font-bold tracking-widest uppercase">
                     Official Record #{selectedImage + 1024}
                   </span>
                 </div>
+
+                {/* Slide Counter */}
+                {galleryItems[selectedImage].images.length > 1 && (
+                  <div className="absolute top-6 right-6 px-3 py-1.5 bg-black/50 backdrop-blur-sm rounded-full z-10">
+                    <span className="text-white text-xs font-bold">
+                      {slideIndex + 1} / {galleryItems[selectedImage].images.length}
+                    </span>
+                  </div>
+                )}
+
+                {/* Prev / Next Arrows */}
+                {galleryItems[selectedImage].images.length > 1 && (
+                  <>
+                    <button
+                      onClick={goPrev}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white transition-all z-10"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={goNext}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white transition-all z-10"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </>
+                )}
+
+                {/* Dot Indicators */}
+                {galleryItems[selectedImage].images.length > 1 && (
+                  <div className="absolute bottom-5 left-0 right-0 flex justify-center gap-2 z-10">
+                    {galleryItems[selectedImage].images.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={(e) => { e.stopPropagation(); setSlideIndex(idx); }}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          idx === slideIndex ? "bg-white w-5" : "bg-white/40"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Detail Sidebar */}
@@ -220,19 +327,19 @@ export default function GallerySection() {
                     {galleryItems[selectedImage].category}
                   </span>
                 </div>
-                
+
                 <h3 className="text-3xl font-serif font-bold text-[#0B3D91] mb-6">
                   {galleryItems[selectedImage].title}
                 </h3>
-                
+
                 <div className="h-px w-20 bg-[#B8860B]/30 mb-6" />
-                
+
                 <p className="text-[#0B3D91]/70 text-lg leading-relaxed font-medium mb-10">
                   {galleryItems[selectedImage].desc}
                 </p>
 
                 <motion.button
-                  onClick={() => setSelectedImage(null)}
+                  onClick={closeLightbox}
                   className="w-full py-4 bg-[#0B3D91] text-white font-bold rounded-xl shadow-lg hover:shadow-[#0B3D91]/20 transition-all"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
