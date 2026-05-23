@@ -45,7 +45,8 @@ export default function Navbar() {
 
   const scrollTo = (href: string) => {
     setIsMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    const el = document.querySelector(href);
+    if (el) el.scrollIntoView({ behavior: "instant" });
   };
 
   return (
@@ -87,7 +88,7 @@ export default function Navbar() {
                   Embassy Solutions
                 </p>
                 <p className="text-[#B8860B] text-[10px] font-semibold tracking-[0.15em] uppercase">
-                  Global Diplomatic Services
+                  Facilities & Business Support Partner
                 </p>
               </div>
             </motion.a>
@@ -133,47 +134,6 @@ export default function Navbar() {
                 <span>+27 67 150 7317</span>
               </motion.a>
 
-              {/* Language Selector */}
-              <div className="relative">
-                <motion.button
-                  onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                  className="flex items-center gap-2 px-3 py-2 text-[#0B3D91] font-semibold text-sm border border-[#0B3D91]/20 rounded-lg hover:bg-[#0B3D91]/5 transition-all"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <Globe className="w-4 h-4" />
-                  <span>{selectedLanguage}</span>
-                </motion.button>
-
-                <AnimatePresence>
-                  {isLanguageOpen && (
-                    <motion.div
-                      className="absolute right-0 mt-2 w-40 bg-white border border-[#0B3D91]/20 rounded-lg shadow-xl z-50"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                    >
-                      {languages.map((lang) => (
-                        <motion.button
-                          key={lang.code}
-                          onClick={() => {
-                            setSelectedLanguage(lang.code);
-                            setIsLanguageOpen(false);
-                          }}
-                          className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors ${
-                            selectedLanguage === lang.code
-                              ? "bg-[#0B3D91]/10 text-[#0B3D91] border-l-2 border-[#B8860B]"
-                              : "text-[#0B3D91]/70 hover:bg-[#0B3D91]/5 hover:text-[#0B3D91]"
-                          }`}
-                          whileHover={{ paddingLeft: 20 }}
-                        >
-                          {lang.label}
-                        </motion.button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
               {/* Primary CTA */}
               <motion.a
                 href="#contact"
@@ -185,7 +145,7 @@ export default function Navbar() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Get a Quote
+                Get Quote
               </motion.a>
             </div>
 
@@ -295,7 +255,7 @@ export default function Navbar() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Get a Quote
+                Get Quote
               </motion.a>
             </div>
           </motion.div>

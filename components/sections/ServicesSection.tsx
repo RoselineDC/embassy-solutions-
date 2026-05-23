@@ -215,6 +215,12 @@ const categories = [
   { id: "trade",        label: "Trade"         },
 ];
 
+// Instant jump — no visible scroll
+const goToContact = () => {
+  const el = document.getElementById("contact");
+  if (el) el.scrollIntoView({ behavior: "instant" });
+};
+
 export default function ServicesSection() {
   const [activeCategory, setActiveCategory] = useState("all");
   const router = useRouter();
@@ -295,10 +301,8 @@ export default function ServicesSection() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
               >
-                <div
-                  onClick={() => router.push(service.path)}
-                  className="group relative bg-[#0B3D91]/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-[#B8860B]/50 transition-all duration-500 flex flex-col h-full shadow-xl cursor-pointer"
-                >
+                {/* Card — no onClick navigation, removed router.push on card */}
+                <div className="group relative bg-[#0B3D91]/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-[#B8860B]/50 transition-all duration-500 flex flex-col h-full shadow-xl">
                   {/* Image */}
                   <div className="relative h-56 overflow-hidden">
                     <img
@@ -344,11 +348,8 @@ export default function ServicesSection() {
 
                     <div className="mt-auto pt-6 border-t border-white/5">
                       <motion.button
-                        className="flex items-center gap-2 text-[#B8860B] text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-4 transition-all"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          router.push("/#contact");
-                        }}
+                        className="flex items-center gap-2 text-[#B8860B] text-xs font-bold uppercase tracking-[0.2em] hover:gap-4 transition-all"
+                        onClick={goToContact}
                       >
                         Get a Quote <ArrowRight className="w-4 h-4" />
                       </motion.button>
@@ -374,15 +375,15 @@ export default function ServicesSection() {
             Our team is equipped to handle unique requirements that may not be listed above.
             Contact us for a professional assessment tailored to your needs.
           </p>
-          <motion.a
-            href="#contact"
+          <motion.button
+            onClick={goToContact}
             className="inline-flex items-center gap-3 px-10 py-4 bg-[#B8860B] text-[#051a44] font-bold rounded-xl shadow-lg hover:shadow-[#B8860B]/20 transition-all"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
             Contact Us
             <ArrowRight className="w-5 h-5" />
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
     </section>

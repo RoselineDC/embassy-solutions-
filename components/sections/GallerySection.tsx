@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Maximize2, Building2, Shield, Globe, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, Maximize2, Building2, Shield, Globe, Briefcase, ChevronLeft, ChevronRight, Wrench, Truck } from "lucide-react";
 
 const galleryItems = [
   {
     images: [
-  
       "/school.jpeg",
       "/school2.jpeg",
       "/school3.jpeg",
@@ -16,9 +15,9 @@ const galleryItems = [
       "/construction1.jpeg",
       "/school6.jpeg"
     ],
-    title: "Diplomatic Facility Construction",
-    category: "Infrastructure",
-    desc: "End-to-end construction of embassy and government facilities with secure structural systems and mission-ready infrastructure delivery.",
+    title: "Construction & Renovations",
+    category: "Construction",
+    desc: "End-to-end construction and renovation of residential, commercial, and diplomatic properties. Quality workmanship and modern finishes delivered from start to completion.",
     icon: Building2
   },
   {
@@ -30,27 +29,27 @@ const galleryItems = [
     ],
     title: "Building Maintenance & Refurbishment",
     category: "Maintenance",
-    desc: "Ongoing maintenance and refurbishment of diplomatic offices and residences to ensure operational efficiency and structural integrity.",
-    icon: Briefcase
+    desc: "Ongoing maintenance and refurbishment of offices and residences to ensure properties remain in excellent condition throughout the year.",
+    icon: Wrench
   },
   {
     images: [
       "/heroslide1.png",
       "/transport.jpg",
     ],
-    title: "Secure Transport & Site Logistics",
+    title: "Transport Services",
     category: "Transport",
-    desc: "Coordinated transport planning and logistics management for diplomatic sites, ensuring secure access and operational movement.",
-    icon: Globe
+    desc: "Professional transport solutions for diplomats, executives, visitors, and corporate clients. Punctuality, professionalism, comfort, and safety are our priorities.",
+    icon: Truck
   },
   {
     images: [
       "/camera.jpeg",
       "/6.png",
     ],
-    title: "Government CCTV Surveillance Systems",
-    category: "Infrastructure",
-    desc: "Design and installation of integrated CCTV surveillance systems across government and embassy compounds for enhanced perimeter security.",
+    title: "Security Systems Upgrades",
+    category: "Construction",
+    desc: "Design and installation of advanced security systems including CCTV, alarm systems, access control, and electric fencing for residential, commercial, and diplomatic properties.",
     icon: Shield
   },
   {
@@ -62,33 +61,31 @@ const galleryItems = [
       "/roof5.jpeg",
       "/roof6.jpeg",
       "/roof7.jpeg",
-
-
     ],
-    title: "Diplomatic Facility Maintenance Operations",
+    title: "Maintenance & Repairs",
     category: "Maintenance",
-    desc: "Comprehensive maintenance operations for diplomatic facilities, including structural repairs, system upgrades, and preventive care to ensure mission readiness.",
-    icon: Globe
+    desc: "Comprehensive maintenance operations including structural repairs, roofing, plumbing, electrical, and preventive care to keep properties running at their best.",
+    icon: Wrench
   },
   {
     images: [
-   "/track1.jpeg",
+      "/track1.jpeg",
     ],
-    title: "Secure Communications & Network Systems",
+    title: "Corporate & VIP Transport",
     category: "Transport",
-    desc: "Deployment of secure communication and travel monitoring supporting diplomatic transport coordination and mission operations.",
-    icon: Shield
+    desc: "Chauffeur services, airport transfers, shuttle services, and VIP transport solutions for corporate clients and diplomatic missions.",
+    icon: Truck
   },
 ];
 
-const categories = ["All Operations", "Infrastructure", "Maintenance", "Transport"];
+const categories = ["All Work", "Construction", "Maintenance", "Transport"];
 
 export default function GallerySection() {
-  const [activeCategory, setActiveCategory] = useState("All Operations");
+  const [activeCategory, setActiveCategory] = useState("All Work");
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [slideIndex, setSlideIndex] = useState(0);
 
-  const filtered = activeCategory === "All Operations"
+  const filtered = activeCategory === "All Work"
     ? galleryItems
     : galleryItems.filter((item) => item.category === activeCategory);
 
@@ -131,7 +128,7 @@ export default function GallerySection() {
             viewport={{ once: true }}
             className="text-[#B8860B] font-bold text-xs tracking-[0.3em] uppercase"
           >
-            Mission Portfolio
+            Our Work
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -140,7 +137,7 @@ export default function GallerySection() {
             viewport={{ once: true }}
             className="text-4xl sm:text-5xl font-serif font-bold text-[#0B3D91] mt-4 mb-6"
           >
-            Excellence in Action
+            Projects & Completed Work
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -149,8 +146,8 @@ export default function GallerySection() {
             viewport={{ once: true }}
             className="text-[#0B3D91]/70 max-w-2xl mx-auto text-lg font-medium leading-relaxed"
           >
-            A visual record of our commitment to delivering high-precision support
-            and operational security for sovereign missions globally.
+            A showcase of our commitment to quality workmanship and professional
+            service delivery across construction, maintenance, and transport.
           </motion.p>
         </div>
 
@@ -196,7 +193,6 @@ export default function GallerySection() {
                       alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
-                    {/* Image count badge */}
                     {item.images.length > 1 && (
                       <div className="absolute top-4 right-4 px-2.5 py-1 bg-black/50 backdrop-blur-sm rounded-full text-white text-[10px] font-bold tracking-wider">
                         1 / {item.images.length}
@@ -223,7 +219,7 @@ export default function GallerySection() {
         </motion.div>
       </div>
 
-      {/* Lightbox with Slideshow */}
+      {/* Lightbox */}
       <AnimatePresence>
         {selectedImage !== null && (
           <motion.div
@@ -233,7 +229,6 @@ export default function GallerySection() {
             exit={{ opacity: 0 }}
             onClick={closeLightbox}
           >
-            {/* Close Button */}
             <motion.button
               className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors border border-white/20 z-10"
               onClick={closeLightbox}
@@ -264,10 +259,10 @@ export default function GallerySection() {
                   />
                 </AnimatePresence>
 
-                {/* Record Badge */}
+                {/* Project Badge */}
                 <div className="absolute top-6 left-6 px-4 py-2 bg-[#0B3D91]/90 backdrop-blur-md border border-white/20 rounded-full z-10">
                   <span className="text-white text-[10px] font-bold tracking-widest uppercase">
-                    Official Record #{selectedImage + 1024}
+                    Embassy Solutions Project
                   </span>
                 </div>
 
@@ -280,7 +275,7 @@ export default function GallerySection() {
                   </div>
                 )}
 
-                {/* Prev / Next Arrows */}
+                {/* Arrows */}
                 {galleryItems[selectedImage].images.length > 1 && (
                   <>
                     <button
@@ -344,7 +339,7 @@ export default function GallerySection() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Return to Portfolio
+                  Back to Gallery
                 </motion.button>
               </div>
             </motion.div>
