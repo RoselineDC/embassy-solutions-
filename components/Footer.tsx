@@ -10,11 +10,11 @@ import Image from "next/image";
 
 export default function Footer() {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "instant" });
   };
 
   const scrollTo = (id: string) => {
-    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+    document.querySelector(id)?.scrollIntoView({ behavior: "instant" });
   };
 
   return (

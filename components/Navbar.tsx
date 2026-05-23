@@ -198,7 +198,7 @@ export default function Navbar() {
               ))}
 
               {/* Mobile Language Selector */}
-              <motion.div
+              {/* <motion.div
                 className="w-full max-w-xs mt-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -239,7 +239,7 @@ export default function Navbar() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </motion.div> */}
 
               {/* Mobile CTA */}
               <motion.a
