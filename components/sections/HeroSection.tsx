@@ -2,26 +2,17 @@
 
 import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Shield, Truck, Globe, Handshake, type LucideIcon } from "lucide-react";
+import { HardHat, Wrench, Truck, Handshake, type LucideIcon } from "lucide-react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
-
-// ─── Config ──────────────────────────────────────────────────────────────────
-// Centralise brand tokens. Change once, updates everywhere.
-const BRAND = {
-  navy: "#0B3D91",
-  gold: "#B8860B",
-  sky: "#38BDF8",
-} as const;
 
 const SERVICES: { icon: LucideIcon; label: string }[] = [
-  { icon: Truck,     label: "Transport"  },
-  { icon: Globe,     label: "Global Reach"      },
-  { icon: Handshake, label: "Trade Solutions" },
+  { icon: HardHat,   label: "Construction & Renovations" },
+  { icon: Wrench,    label: "Maintenance Services"       },
+  { icon: Truck,     label: "Transport"                  },
+  { icon: Handshake, label: "Trade Facilitation"         },
 ];
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
-// Extracted so each piece is independently readable and testable.
 
 function GoldDivider() {
   return (
@@ -63,13 +54,11 @@ function ServiceIcon({
       animate={animate ? { opacity: 1, y: 0 }  : false}
       transition={{ delay: 0.2 * index, duration: 0.5 }}
       className="flex flex-col items-center gap-2 group cursor-pointer"
-      // Accessibility: make each service a focusable, labelled landmark
       role="listitem"
       aria-label={label}
       tabIndex={0}
     >
       <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 focus-within:scale-110">
-        {/* aria-hidden: the label below already describes this */}
         <Icon className="w-6 h-6 md:w-8 md:h-8 text-[#0B3D91]" aria-hidden />
         <div className="absolute inset-[-3px] rounded-full border border-white/30" aria-hidden />
       </div>
@@ -83,34 +72,29 @@ function ServiceIcon({
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function HeroSection() {
-  // Respect OS-level "reduce motion" preference — a11y best practice
   const prefersReducedMotion = useReducedMotion();
   const shouldAnimate = !prefersReducedMotion;
 
   return (
-   <section
-  className="relative w-full flex flex-col items-center justify-between overflow-hidden"
-  style={{ aspectRatio: "16/9", minHeight: "70vh"  }}
->
+    <section
+      className="relative w-full flex flex-col items-center justify-between overflow-hidden"
+      style={{ aspectRatio: "16/9", minHeight: "70vh" }}
+    >
       {/* ── Background Image ── */}
-       <div className="absolute inset-0">
-    <Image
-      src="/diplomatic_team_hero.png"
-      alt=""
-      fill
-      priority
-      sizes="100vw"
-      className="object-cover" 
+      <div className="absolute inset-0">
+        <Image
+          src="/diplomatic_team_hero.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
-
-        {/* Top gradient: readability for text above the image */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-transparent" />
-
-        {/* Bottom gradient: feathers the image into the bottom bar */}
         <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-b from-transparent to-[#0B3D91]/90" />
       </div>
 
-      {/* ── Top: Services header ── */}
+      {/* ── Top: Service Pills ── */}
       <div className="relative z-10 pt-16 text-center w-full px-4">
         <motion.div
           initial={shouldAnimate ? { opacity: 0, y: -20 } : false}
@@ -118,7 +102,6 @@ export default function HeroSection() {
           transition={{ duration: 0.8 }}
         >
           <GoldDivider />
-
           <div
             className="flex flex-wrap justify-center items-center gap-4 md:gap-8"
             role="list"
@@ -136,11 +119,9 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* ── Bottom: Icon bar ── */}
+      {/* ── Bottom: Icon Bar ── */}
       <div className="relative z-10 w-full">
-        {/* Solid bar with blur — sits on top of the gradient above */}
         <div className="absolute inset-0 bg-[#0B3D91]/90 backdrop-blur-sm border-t-4 border-[#B8860B]" />
-
         <nav
           className="relative max-w-7xl mx-auto px-4 py-3 md:py-5"
           aria-label="Service categories"
